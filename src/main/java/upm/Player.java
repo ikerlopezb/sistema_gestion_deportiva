@@ -1,7 +1,7 @@
 package upm;
 
 public class Player {
-    private String name;
+    private final String name;
     private double score;
 
     public Player(String name) {
@@ -14,9 +14,9 @@ public class Player {
         return this.name;
     }
 
-    public void setName(String name) {
+    /*public void setName(String name) {
         this.name = name;
-    }
+    }*/
 
     public double getScore() {
         return this.score;

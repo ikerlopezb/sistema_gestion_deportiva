@@ -26,7 +26,7 @@ public class AdminView {
             for (; i < numPlayers - 1; i++) {
                 listOfPlayers[i] = listOfPlayers[i+1];
             }
-            listOfPlayers[i].setName(" ");
+            listOfPlayers[i]=null;
             numPlayers--;
         }
     }
