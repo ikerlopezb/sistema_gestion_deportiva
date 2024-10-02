@@ -32,7 +32,7 @@ public class AdminView {
     }
 
     public void show(){
-        for (int i = 0; i < numPlayers - 1; i++) {
+        for (int i = 0; i < numPlayers; i++) {
             System.out.println(listOfPlayers[i].getName()+ " "+listOfPlayers[i].getScore());
         }
     }
