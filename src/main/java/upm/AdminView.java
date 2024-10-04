@@ -47,7 +47,7 @@ public class AdminView {
         for (int i = 0; i <this.numPlayers ; i++) {
             for (int j = 0; j <this.numPlayers-1; j++) {
                 if(listOfPlayers[j].getScore()<listOfPlayers[j+1].getScore()) {
-                    Player aux = new Player(null);
+                    Player aux;
                     aux=listOfPlayers[j];
                     listOfPlayers[j]=listOfPlayers[j+1];
                     listOfPlayers[j+1]=aux;
