@@ -1,4 +1,6 @@
 package upm;
+import java.util.ArrayList;
+import java.util.List;
 
 public class App {
 
@@ -13,6 +15,7 @@ public class App {
         Player player6 = new Player("Balotelli");
         Player player7 = new Player("Mbappe");
         Player player8 = new Player("Valdivieso");
+
 
 
         admin.create(player1);
@@ -39,6 +42,11 @@ public class App {
         admin.rank();
         System.out.println();
         admin.show();
+        System.out.println();
+        admin.matchmake(player1.getName(), player2.getName());
+        admin.matchmake(player1.getName(), player4.getName());
+        System.out.println();
+        admin.showMatchmake();
 
     }
 }

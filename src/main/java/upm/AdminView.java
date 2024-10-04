@@ -1,8 +1,12 @@
 package upm;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class AdminView {
     final private Player listOfPlayers[] = new Player[100];
     private int numPlayers = 0;
+    private List<String> matches = new ArrayList<String>();
 
     public void create(Player player){
         if(this.numPlayers < listOfPlayers.length){
@@ -52,6 +56,56 @@ public class AdminView {
                     listOfPlayers[j]=listOfPlayers[j+1];
                     listOfPlayers[j+1]=aux;
                 }
+            }
+        }
+    }
+
+
+    public boolean exist(String name){
+        boolean found = false;
+        int i = 0;
+        while(i < this.numPlayers && !found) {
+            if(listOfPlayers[i].getName().equals(name)){
+                found = true;
+            }
+            i++;
+        }
+        return found;
+    }
+    public boolean paired(String name){
+        Iterator<String> iterator = matches.iterator();
+        boolean found = false;
+
+        while(iterator.hasNext() && !found){
+            if(iterator.next().equals(name)){
+                found = true;
+            }
+        }
+        return found;
+    }
+
+    public void matchmake(String name1, String name2){
+        if(!paired(name1) && exist(name1)){
+            if(!paired(name2) && exist(name2)) {
+                matches.add(name1);
+                matches.add(name2);
+            }
+        }
+    }
+
+    public void clearMatchmake(){
+        matches.clear();
+    }
+    public void showMatchmake(){
+        String name1;
+        String name2;
+        Iterator<String> iterator = matches.iterator();
+
+        while(iterator.hasNext()){
+            name1 = iterator.next();
+            if (iterator.hasNext()){
+                name2 = iterator.next();
+                System.out.println(name1 + " vs " + name2);
             }
         }
     }
