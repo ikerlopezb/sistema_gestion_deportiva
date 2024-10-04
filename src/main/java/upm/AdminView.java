@@ -44,29 +44,14 @@ public class AdminView {
     }
 
     public void rank() {
-        boolean ordered = false;
-        int gap=this.listOfPlayers.length-1;
-
-        if (this.listOfPlayers[0].getScore()>this.listOfPlayers[gap].getScore()) {
-            Player aux=listOfPlayers[0];
-            this.listOfPlayers[0] = this.listOfPlayers[gap];
-            this.listOfPlayers[gap] = aux;
-        }
-
-        while (!ordered || gap>1){
-            if (gap>1){
-                gap=(int) Math.floor(gap/1.3);
-                ordered = true;
-            }
-            int i=0;
-            while (i+gap < listOfPlayers.length) {
-                if (listOfPlayers[i].getScore() > listOfPlayers[i+gap].getScore()) {
-                    Player aux=listOfPlayers[i];
-                    listOfPlayers[i] = listOfPlayers[i+gap];
-                    listOfPlayers[i+gap] = aux;
-                    ordered=false;
+        for (int i = 0; i <this.numPlayers ; i++) {
+            for (int j = 0; j <this.numPlayers-1; j++) {
+                if(listOfPlayers[j].getScore()<listOfPlayers[j+1].getScore()) {
+                    Player aux = new Player(null);
+                    aux=listOfPlayers[j];
+                    listOfPlayers[j]=listOfPlayers[j+1];
+                    listOfPlayers[j+1]=aux;
                 }
-                i++;
             }
         }
     }
