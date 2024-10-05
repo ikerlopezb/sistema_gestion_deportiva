@@ -61,7 +61,7 @@ public class AdminView {
     }
 
 
-    public boolean exist(String name){
+    private boolean exist(String name){
         boolean found = false;
         int i = 0;
         while(i < this.numPlayers && !found) {
@@ -72,7 +72,7 @@ public class AdminView {
         }
         return found;
     }
-    public boolean paired(String name){
+    private boolean paired(String name){
         Iterator<String> iterator = matches.iterator();
         boolean found = false;
 
@@ -107,6 +107,12 @@ public class AdminView {
                 name2 = iterator.next();
                 System.out.println(name1 + " vs " + name2);
             }
+        }
+    }
+
+    public void randomMatchmake(){
+        if(this.numPlayers % 2 == 0){
+
         }
     }
 }
