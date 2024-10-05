@@ -2,6 +2,8 @@ package upm;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
+import java.util.random.RandomGenerator;
 
 public class AdminView {
     final private Player listOfPlayers[] = new Player[100];
@@ -62,15 +64,11 @@ public class AdminView {
 
 
     private boolean exist(String name){
-        boolean found = false;
         int i = 0;
-        while(i < this.numPlayers && !found) {
-            if(listOfPlayers[i].getName().equals(name)){
-                found = true;
-            }
+        while(i < this.numPlayers && !listOfPlayers[i].getName().equals(name)) {
             i++;
         }
-        return found;
+        return listOfPlayers[i].getName().equals(name);
     }
     private boolean paired(String name){
         Iterator<String> iterator = matches.iterator();
@@ -111,8 +109,22 @@ public class AdminView {
     }
 
     public void randomMatchmake(){
-        if(this.numPlayers % 2 == 0){
-
+        if(this.numPlayers % 2 == 0) {
+            int i;
+            do {
+                i = matchmake();
+                matches.add(this.listOfPlayers[i].getName());
+            } while (matches.size() < this.numPlayers);
         }
+
+    }
+
+    private int matchmake(){
+        Random random = new Random();
+        int i = random.nextInt(this.numPlayers);
+        if(paired(this.listOfPlayers[i].getName())) {
+             return matchmake();
+        }
+        return i;
     }
 }

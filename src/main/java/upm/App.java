@@ -44,9 +44,14 @@ public class App {
         admin.show();
         System.out.println();
         admin.matchmake(player1.getName(), player2.getName());
-        admin.matchmake(player1.getName(), player4.getName());
+        admin.matchmake(player5.getName(), player4.getName());
         System.out.println();
         admin.showMatchmake();
+        admin.clearMatchmake();
+        admin.randomMatchmake();
+        System.out.println();
+        admin.showMatchmake();
+
 
     }
 }
