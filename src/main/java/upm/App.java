@@ -50,7 +50,7 @@ public class App {
 
         System.out.println();
 
-        System.out.println("Borrar emparejamientos");
+        System.out.println("Borrar emparejamientos... \n");
         admin.clearMatchmake();
         admin.showMatchmake();
 
