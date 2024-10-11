@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class AdminView {
     final private Player listOfPlayers[] = new Player[100];
@@ -42,11 +43,19 @@ public class AdminView {
         }
     }
 
-    public void score(Player player,double updateScore) {
-        if(updateScore >= -999999.0) {
-            player.setScore(updateScore);
+    public void score(String namePlayer,double updateScore) {
+        int i = 0;
+        assert updateScore >= -999999.0;
+        if(exist(namePlayer)){
+            while(!listOfPlayers[i].getName().equals(namePlayer)) {
+                i++;
+            }
+            listOfPlayers[i].setScore(updateScore);
         }
-    }
+
+
+        }
+
 
     public void rank() {
         for (int i = 0; i <this.numPlayers ; i++) {
@@ -122,8 +131,69 @@ public class AdminView {
         Random random = new Random();
         int i = random.nextInt(this.numPlayers);
         if(paired(this.listOfPlayers[i].getName())) {
-             return matchmake();
+            return matchmake();
         }
         return i;
     }
+
+    private void menu(){
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
+
+        do{
+            System.out.println("Introduzca un comando: ");
+            String command = scanner.nextLine().trim().toLowerCase();
+            switch(command){
+                case "create":
+                    System.out.print("Introduzca el nombre del jugador: \n");
+                    String playerName = scanner.nextLine();
+                    Player newPlayer = new Player(playerName);
+                    create(newPlayer);
+                    System.out.println("Jugador " + playerName + " ha sido creado.");
+                    break;
+
+                case "remove":
+                    System.out.print("Introduzca el nombre del jugador: \n");
+                    String removeName = scanner.nextLine();
+                    remove(removeName);
+                    System.out.println("Jugador " + removeName + " ha sido eliminado.");
+                    break;
+
+                case "show":
+                    show();
+                    break;
+
+                case "score":
+                    System.out.print("Introduzca el nombre del jugador: \n");
+                    String namePlayer = scanner.nextLine();
+                    if (exist(namePlayer)){
+                        System.out.println("Introduzca la puntuación(utilice la coma decimal): \n");
+                        double score = scanner.nextDouble();
+                        score(namePlayer, score);
+                    }
+                    break;
+
+                case "rank":
+                    rank();
+
+                case "matchmake":
+                    System.out.print("Introduzca el nombre del primer jugador: \n");
+                    String name1 = scanner.nextLine();
+                    Player player1 = new Player(name1);
+                    System.out.print("Introduzca el nombre del segundo jugador: \n");
+                    String name2 = scanner.nextLine();
+                    Player player2 = new Player(name2);
+
+                case "exit":
+                    running = false;
+                    break;
+            }
+        }while(running);
+    }
+
+    public static void main(String[] args){
+        new AdminView().menu();
+    }
+
+
 }
