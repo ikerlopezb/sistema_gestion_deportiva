@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class AdminView {
+public class Tournament {
     final private Player listOfPlayers[] = new Player[100];
     private int numPlayers = 0;
     private List<String> matches = new ArrayList<String>();
@@ -135,64 +135,127 @@ public class AdminView {
         }
         return i;
     }
+    private void error(int method){
+        String[] methosNames = new String[] {"create [player]", "remove [player]", "show", "score [player];[score]",
+                "rank", "matchmake [player1];[player2]", "clear_matchmake", "show_matchmake", "random_matchmake"};
+
+        System.out.println("Formato incorrecto. Use " + methosNames[method]);
+    }
 
     private void menu(){
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
+        scanner.useDelimiter("\n");
 
         do{
             System.out.println("Introduzca un comando: ");
-            String command = scanner.nextLine().trim().toLowerCase();
+            String commandLine = scanner.nextLine().trim().toLowerCase();
+            Scanner commandScanner = new Scanner(commandLine).useDelimiter(";");
+            String firstPart = commandScanner.next().trim();
+
+            String[] firstCommandParts = firstPart.split(" ");
+            String command = firstCommandParts[0];
+
             switch(command){
                 case "create":
-                    System.out.print("Introduzca el nombre del jugador: \n");
-                    String playerName = scanner.nextLine();
-                    Player newPlayer = new Player(playerName);
-                    create(newPlayer);
-                    System.out.println("Jugador " + playerName + " ha sido creado.");
-                    break;
-
-                case "remove":
-                    System.out.print("Introduzca el nombre del jugador: \n");
-                    String removeName = scanner.nextLine();
-                    remove(removeName);
-                    System.out.println("Jugador " + removeName + " ha sido eliminado.");
-                    break;
-
-                case "show":
-                    show();
-                    break;
-
-                case "score":
-                    System.out.print("Introduzca el nombre del jugador: \n");
-                    String namePlayer = scanner.nextLine();
-                    if (exist(namePlayer)){
-                        System.out.println("Introduzca la puntuación(utilice la coma decimal): \n");
-                        double score = scanner.nextDouble();
-                        score(namePlayer, score);
+                    if (firstCommandParts.length == 2) {
+                        String playerName = firstCommandParts[1].trim();
+                        Player newPlayer = new Player(playerName);
+                        create(newPlayer);
+                        System.out.println("Jugador " + playerName + " ha sido creado.");
+                    } else {
+                        error(0);
                     }
                     break;
 
-                case "rank":
-                    rank();
+                case "remove":
+                    if (firstCommandParts.length == 2) {
+                        String playerName = firstCommandParts[1].trim();
+                        remove(playerName);
+                        System.out.println("Jugador " + playerName + " ha sido eliminado.");
+                    } else {
+                        error(1);
+                    }
+                    break;
+
+                case "show":
+                    if (firstCommandParts.length == 1) {
+                        show();
+                    } else {
+                        error(2);
+                    }
+                    break;
+
+                case "score":
+                    if (commandScanner.hasNext()) {
+                        String playerName = firstCommandParts[1].trim();
+                        double score = Double.parseDouble(commandScanner.next().trim());
+                        if (exist(playerName)) {
+                            score(playerName, score);
+                            System.out.println("Puntuación de " + score + " asignada a " + playerName);
+                        } else {
+                            System.out.println("El jugador " + playerName + " no existe.");
+                        }
+                    } else {
+                        error(3);
+                    }
+                    break;
+
+                case "rank":        //corregir
+                    if (firstCommandParts.length == 1) {
+                        rank();
+                    } else {
+                        error(4);
+                    }
+                    break;
 
                 case "matchmake":
-                    System.out.print("Introduzca el nombre del primer jugador: \n");
-                    String name1 = scanner.nextLine();
-                    Player player1 = new Player(name1);
-                    System.out.print("Introduzca el nombre del segundo jugador: \n");
-                    String name2 = scanner.nextLine();
-                    Player player2 = new Player(name2);
+                    if (commandScanner.hasNext()) {
+                        String player1 = firstCommandParts[1].trim();
+                        String player2 = commandScanner.next().trim();
+                        matchmake(player1, player2);
+                        System.out.println("Partida creada entre " + player1 + " y " + player2);
+                    } else {
+                        error(5);
+                    }
+                    break;
+
+                case "clear_matchmake":
+                    if(firstCommandParts.length == 1){
+                        clearMatchmake();
+                    }
+                    else{
+                        error(6);
+                    }
+                    break;
+
+                case "show_matchmake":      //corregir
+                    if(firstCommandParts.length == 1){
+                        showMatchmake();
+                    }
+                    else{
+                        error(7);
+                    }
+
+                case "random_matchmake":
+                    if(firstCommandParts.length == 1){
+                        randomMatchmake();
+                    }
+                    else{
+                        error(8);
+                    }
+                    break;
 
                 case "exit":
                     running = false;
+                    System.out.println("Finalizado correctamente.");
                     break;
             }
         }while(running);
     }
 
     public static void main(String[] args){
-        new AdminView().menu();
+        new Tournament().menu();
     }
 
 
