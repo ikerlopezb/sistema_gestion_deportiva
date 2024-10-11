@@ -153,7 +153,7 @@ public class Tournament {
             Scanner commandScanner = new Scanner(commandLine).useDelimiter(";");
             String firstPart = commandScanner.next().trim();
 
-            String[] firstCommandParts = firstPart.split(" ");
+            String[] firstCommandParts = firstPart.split("\\s+");
             String command = firstCommandParts[0];
 
             switch(command){
@@ -201,7 +201,7 @@ public class Tournament {
                     }
                     break;
 
-                case "rank":        //corregir
+                case "rank":
                     if (firstCommandParts.length == 1) {
                         rank();
                     } else {
@@ -236,6 +236,7 @@ public class Tournament {
                     else{
                         error(7);
                     }
+                    break;
 
                 case "random_matchmake":
                     if(firstCommandParts.length == 1){
