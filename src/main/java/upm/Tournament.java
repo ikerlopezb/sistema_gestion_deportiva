@@ -136,10 +136,10 @@ public class Tournament {
         return i;
     }
     private void error(int method){
-        String[] methosNames = new String[] {"create [player]", "remove [player]", "show", "score [player];[score]",
+        String[] methodNames = new String[] {"create [player]", "remove [player]", "show", "score [player];[score]",
                 "rank", "matchmake [player1];[player2]", "clear_matchmake", "show_matchmake", "random_matchmake"};
 
-        System.out.println("Formato incorrecto. Use " + methosNames[method]);
+        System.out.println("Formato incorrecto. Use " + methodNames[method]);
     }
 
     private void menu(){
