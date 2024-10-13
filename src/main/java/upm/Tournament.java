@@ -254,6 +254,9 @@ public class Tournament {
                     running = false;
                     System.out.println("Finalizado correctamente.");
                     break;
+
+                default:
+                    System.out.println("El comando introducido no existe");
             }
         }while(running);
     }
