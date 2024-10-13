@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 class TournamentTest() {
     @Test
-    void testApp(){
+    void testTournament(){
         new Tournament();
     }
 }

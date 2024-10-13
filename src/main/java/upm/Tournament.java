@@ -73,10 +73,13 @@ public class Tournament {
 
     private boolean exist(String name){
         int i = 0;
-        while(i < this.numPlayers && !listOfPlayers[i].getName().equals(name)) {
+        boolean found = false;
+        while(i < this.numPlayers && !found) {
+            if(listOfPlayers[i].getName().equals(name))
+                found = true;
             i++;
         }
-        return listOfPlayers[i].getName().equals(name);
+        return found;
     }
     private boolean paired(String name){
         Iterator<String> iterator = matches.iterator();
@@ -229,7 +232,7 @@ public class Tournament {
                     }
                     break;
 
-                case "show_matchmake":      //corregir
+                case "show_matchmake":
                     if(firstCommandParts.length == 1){
                         showMatchmake();
                     }
