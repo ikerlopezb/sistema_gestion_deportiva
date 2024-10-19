@@ -10,15 +10,16 @@ public class Tournament extends ListPlayers {
 
     private boolean paired(Player player){
         Iterator<Player[]> iterator = matches.iterator();
-        while(iterator.hasNext()){
+        while(iterator.hasNext() && !(player.equals(iterator.next()[0]) || player.equals(iterator.next()[1]))){
+            iterator.next();
         }
-        return matches.contains(player );
+        return (player.equals(iterator.next()[0]) || player.equals(iterator.next()[1]));
     }
 
     public void matchmake(Player player1, Player player2){
         if((!paired(player1) && exist(player1) )&& (!paired(player2) && exist(player2))){
-                matches.add(player1);
-                matches.add(player2);
+            Player[] matchmake = new Player[]{player1,player2};
+                matches.add(matchmake);
         }
     }
 
@@ -26,20 +27,17 @@ public class Tournament extends ListPlayers {
         matches.clear();
     }
     public void showMatchmake(){
-        String name1;
-        String name2;
-        Iterator<String> iterator = matches.iterator();
-
-        while(iterator.hasNext()){
-            name1 = iterator.next();
-            if (iterator.hasNext()){
-                name2 = iterator.next();
-                System.out.println(name1 + " vs " + name2);
-            }
+        Iterator<Player[]> iterator = matches.iterator();
+        while(iterator.hasNext()) {
+            System.out.println(iterator.next()[0].getName() + " vs " + iterator.next()[1].getName());
         }
     }
 
     public void randomMatchmake(){
+        assert listOfPlayers.size() % 2 == 0;
+        Iterator <Player> iterator = listOfPlayers.iterator();
+        Random random = new Random().ints(0,listOfPlayers.size()-1).distinct()
+        /**
         if(this.numPlayers % 2 == 0) {
             int i;
             do {
@@ -47,6 +45,7 @@ public class Tournament extends ListPlayers {
                 matches.add(this.listOfPlayers[i].getName());
             } while (matches.size() < this.numPlayers);
         }
+         **/
 
     }
 

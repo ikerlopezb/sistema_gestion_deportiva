@@ -5,7 +5,7 @@ import java.util.*;
 public class ListPlayers {
 
     //final private Player listOfPlayers[] = new Player[100];
-    private List<Player> listOfPlayers = new ArrayList<Player>();
+    protected List<Player> listOfPlayers = new ArrayList<Player>();
     protected int numPlayers = 0; // puede ser protected al ser atributo o siempre private
     public void create(Player player){
         assert listOfPlayers.size() <= 100;
