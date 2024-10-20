@@ -26,7 +26,7 @@ public class Tournament extends ListPlayers {
     public void clearMatchmake(){
         matches.clear();
     }
-    public void showMatchmake(){
+    public void showMatchmake(){ //Deberíamos mostrar también el score?
         Iterator<Player[]> iterator = matches.iterator();
         while(iterator.hasNext()) {
             System.out.println(iterator.next()[0].getName() + " vs " + iterator.next()[1].getName());
@@ -35,26 +35,25 @@ public class Tournament extends ListPlayers {
 
     public void randomMatchmake(){
         assert listOfPlayers.size() % 2 == 0;
-        Iterator <Player> iterator = listOfPlayers.iterator();
-        Random random = new Random().ints(0,listOfPlayers.size()-1).distinct()
-        /**
-        if(this.numPlayers % 2 == 0) {
-            int i;
-            do {
-                i = matchmake();
-                matches.add(this.listOfPlayers[i].getName());
-            } while (matches.size() < this.numPlayers);
-        }
-         **/
-
+        clearMatchmake();
+        int numPlayers = listOfPlayers.size();
+        do{
+            matches.add(matchmake());
+            numPlayers -= 2;
+        }while(numPlayers > 0);
     }
 
-    private int matchmake(){
+    private int randIndex(){
         Random random = new Random();
-        int i = random.nextInt(this.numPlayers);
-        if(paired(this.listOfPlayers[i].getName())) {
-            return matchmake();
+        int randInd = random.nextInt(listOfPlayers.size());
+        return paired(listOfPlayers.get(randInd)) ? randIndex() : randInd;
+    }
+
+    private Player[] matchmake(){
+        Player[] players = new Player[2];
+        for (int i = 0; i < players.length; i++) {
+            players[i] = listOfPlayers.get(randIndex());
         }
-        return i;
+        return players;
     }
 }

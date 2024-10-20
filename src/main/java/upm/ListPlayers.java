@@ -3,10 +3,7 @@ package upm;
 import java.util.*;
 
 public class ListPlayers {
-
-    //final private Player listOfPlayers[] = new Player[100];
-    protected List<Player> listOfPlayers = new ArrayList<Player>();
-    protected int numPlayers = 0; // puede ser protected al ser atributo o siempre private
+    protected List<Player> listOfPlayers = new ArrayList<Player>(); //Debe ser en este caso protected un atributo?
     public void create(Player player){
         assert listOfPlayers.size() <= 100;
         if(!exist(player)){
