@@ -19,7 +19,7 @@ public class SportsManagement {
         System.out.println("Formato incorrecto. Use " + methodNames[method]);
     }
 
-    private void menu(){
+    protected void menu(){
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
         scanner.useDelimiter("\n");
