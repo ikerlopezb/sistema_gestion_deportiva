@@ -5,9 +5,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-public class Tournament extends ListPlayers {
-    private List<Player[]> matches = new ArrayList<>(2);
+public class Tournament {
+    private List<Player[]> matches;
+    private ListPlayers listPlayers;
 
+    public Tournament(ListPlayers listPlayers){
+        this.listPlayers = listPlayers;
+        this.matches = new ArrayList<>(2);
+    }
     private boolean paired(Player player){
         Iterator<Player[]> iterator = matches.iterator();
         while(iterator.hasNext() && !(player.equals(iterator.next()[0]) || player.equals(iterator.next()[1]))){

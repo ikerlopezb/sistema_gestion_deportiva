@@ -6,8 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class SportsManagement {
-    final private Player listOfPlayers[] = new Player[100];
-    private int numPlayers = 0;
+
 
 
 
