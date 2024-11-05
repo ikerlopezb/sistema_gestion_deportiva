@@ -5,20 +5,23 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-public class Tournament {
-    private List<Player[]> matches;
-    private ListPlayers listPlayers;
+public class MatchList {
+    private List<Match> matches; //como atributo lista de matches
+    private PlayerList playerList;
 
-    public Tournament(ListPlayers listPlayers){
-        this.listPlayers = listPlayers;
-        this.matches = new ArrayList<>(2);
+    public MatchList(PlayerList playerList){
+        this.playerList = playerList;
+        this.matches = new ArrayList<Match>();
     }
     private boolean paired(Player player){
-        Iterator<Player[]> iterator = matches.iterator();
-        while(iterator.hasNext() && !(player.equals(iterator.next()[0]) || player.equals(iterator.next()[1]))){
-            iterator.next();
+        Iterator<Match> iterator = matches.iterator();
+        while(iterator.hasNext()){
+            Match match = iterator.next();
+            if(player.equals(match.getPlayers()[0]) || player.equals(match.getPlayers()[1])){
+                return true;
+            }
         }
-        return (player.equals(iterator.next()[0]) || player.equals(iterator.next()[1]));
+        return false;
     }
 
     public void matchmake(Player player1, Player player2){

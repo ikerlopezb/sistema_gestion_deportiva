@@ -2,7 +2,7 @@ package upm;
 
 import java.util.*;
 
-public class ListPlayers {
+public class PlayerList {
     protected List<Player> listOfPlayers = new ArrayList<Player>(); //Debe ser en este caso protected un atributo?
     public void create(Player player){
         assert listOfPlayers.size() <= 100;
