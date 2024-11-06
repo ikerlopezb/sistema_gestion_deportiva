@@ -30,4 +30,7 @@ public enum CommandCLI  {
         }
         return null;
     }
+
+    // main aqui
+    // hacer un metodo execute nuevo(do while lo que escriba al usuario)
 }
