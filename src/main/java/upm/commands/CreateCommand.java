@@ -1,6 +1,6 @@
-package upm;
-import java.util.Iterator;
-import java.util.Scanner;
+package upm.commands;
+import upm.Player;
+import upm.commands.Command;
 
 public class CreateCommand extends Command {
 

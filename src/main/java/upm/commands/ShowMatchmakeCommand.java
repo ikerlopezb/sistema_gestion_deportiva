@@ -1,13 +1,15 @@
-package upm;
+package upm.commands;
+
+import upm.Match;
+import upm.Player;
 
 import java.util.List;
 
 public class ShowMatchmakeCommand {
     //private List<Match> matches;
 
-    public ShowMatchmakeCommand(List<Match> matches){
+    public ShowMatchmakeCommand(){
         super("show_matchmake");
-        this.matches = matches;
     }
     public void execute(String[] input){
         assert isYours(input[0]);

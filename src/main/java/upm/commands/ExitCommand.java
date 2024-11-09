@@ -1,6 +1,8 @@
-package upm;
+package upm.commands;
 
-public class ExitCommand extends Command{
+import upm.commands.Command;
+
+public class ExitCommand extends Command {
 
     public ExitCommand(){
         super("exit");

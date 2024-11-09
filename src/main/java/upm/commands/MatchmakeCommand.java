@@ -1,4 +1,6 @@
-package upm;
+package upm.commands;
+
+import upm.commands.Command;
 
 public class MatchmakeCommand extends Command {
 

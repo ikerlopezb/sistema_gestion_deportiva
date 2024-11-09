@@ -1,9 +1,11 @@
-package upm;
+package upm.commands;
+
+import upm.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class Command {
+public abstract class Command {
     private String preffix;
     protected List<Player> listOfPlayers = new ArrayList<Player>();
 
