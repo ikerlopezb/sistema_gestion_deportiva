@@ -8,6 +8,7 @@ public class ExitCommand extends Command {
         super("exit");
     }
     public void execute(String[] input){
-        assert isYours(input[0]);
+        assert input.length == 1;
+        System.out.println("Saliendo del programa...");
     }
 }

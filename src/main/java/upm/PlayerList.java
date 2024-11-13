@@ -3,8 +3,31 @@ package upm;
 import java.util.*;
 
 public class PlayerList {
-    protected List<Player> listOfPlayers = new ArrayList<Player>(); //Debe ser en este caso protected un atributo?
-    public void create(Player player){
+    private List<Player> playerList = new ArrayList<Player>();//Debe ser en este caso protected un atributo?
+
+    public List<Player> getPlayerList() {
+        return playerList;
+    }
+
+    public boolean existPlayer(Player player) {
+        assert !playerList.isEmpty();
+        Iterator<Player> iterator = playerList.iterator();
+        while ((iterator.next().getName().equals(player.getName())) && iterator.hasNext()) {
+            iterator.next();
+        }
+        return playerList.contains(player);
+    }
+
+    public Player isPlayer (String playerName){
+        assert !playerList.isEmpty();
+        Iterator<Player> iterator = playerList.iterator();
+        while((iterator.next().getName().equals(playerName)) && iterator.hasNext()){
+            iterator.next();
+        }
+
+    }
+
+    /*public void create(Player player){
         assert listOfPlayers.size() <= 100;
         if(!exist(player)){
             listOfPlayers.add(player);
@@ -23,14 +46,7 @@ public class PlayerList {
         }
     }
 
-    protected boolean exist(Player player){
-        assert !listOfPlayers.isEmpty();
-        Iterator<Player> iterator = listOfPlayers.iterator();
-        while(!listOfPlayers.contains(player) && iterator.hasNext()){
-            iterator.next();
-        }
-        return listOfPlayers.contains(player);
-    }
+
 
 
     public void score(Player player,double updateScore) {
@@ -49,4 +65,5 @@ public class PlayerList {
             }
         });
     }
+    */
 }

@@ -8,7 +8,7 @@ public class SportsManagement {
 
 
 
-    private void error(int method){
+    /*private void error(int method){
         String[] methodNames = new String[] {"create [player]", "remove [player]", "show", "score [player];[score]",
                 "rank", "matchmake [player1];[player2]", "clear_matchmake", "show_matchmake", "random_matchmake"};
 
@@ -31,6 +31,8 @@ public class SportsManagement {
     public static void main(String[] args){
         new SportsManagement().menu();
     }
+
+     */
 
 
 }

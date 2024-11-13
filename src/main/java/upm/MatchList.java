@@ -1,5 +1,7 @@
 package upm;
 
+import upm.commands.Command;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -13,23 +15,37 @@ public class MatchList {
         this.playerList = playerList;
         this.matches = new ArrayList<Match>();
     }
-    private boolean paired(Player player){
-        Iterator<Match> iterator = matches.iterator();
-        while(iterator.hasNext()){
-            Match match = iterator.next();
-            if(player.equals(match.getPlayers()[0]) || player.equals(match.getPlayers()[1])){
-                return true;
-            }
-        }
-        return false;
+
+    public ArrayList<Match> getMatches() {
+        return matches;
     }
 
-    public void matchmake(Player player1, Player player2){
+    private boolean paired(Player player){
+        int i = 0;
+        Player[] matchmake = this.matches.get(i).getPlayers();
+        while(i < this.matches.size() && !(matchmake[0].equals(player) || matchmake[1].equals(player))){
+            i++;
+            matchmake = this.matches.get(i).getPlayers();
+        }
+        return matchmake[0].equals(player) || matchmake[1].equals(player);
+    }
+
+    /*Command command = commandList.get(i);
+            while (i < commandList.size() && !command.isYours(commandName)) {
+        i++;
+        command = commandList.get(i);
+    }*/
+
+
+
+    /*public void matchmake(Player player1, Player player2){
         if((!paired(player1) && exist(player1) )&& (!paired(player2) && exist(player2))){
             Player[] matchmake = new Player[]{player1,player2};
                 matches.add(matchmake);
         }
     }
+
+
 
     public void clearMatchmake(){
         matches.clear();
@@ -64,4 +80,5 @@ public class MatchList {
         }
         return players;
     }
+    */
 }
