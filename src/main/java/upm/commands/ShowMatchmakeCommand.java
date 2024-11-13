@@ -5,7 +5,7 @@ import upm.Player;
 
 import java.util.List;
 
-public class ShowMatchmakeCommand {
+public class ShowMatchmakeCommand extends Command {
     //private List<Match> matches;
 
     public ShowMatchmakeCommand(){

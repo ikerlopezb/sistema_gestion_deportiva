@@ -26,24 +26,34 @@ public class CLI {
      private void execute() {
           String input;
           String commandName;
-          Iterator<String> iterator = commandList.iterator();
+          //Iterator<Command> iterator = commandList.iterator();
+          //Command command;
+          boolean commandFound = false;
           Scanner scanner = new Scanner(System.in);
-          do{
+
+          do {
                System.out.println("Introduce el comando");
                input = scanner.nextLine();
                commandName = input.split(" ")[0].trim();
-               while(iterator.hasNext() && !iterator.next().equals(commandName)) {
-                    iterator.next();
+               int i = 0;
+               Command command = commandList.get(i);
+               while(i < commandList.size() && !command.isYours(commandName)){
+                    i++;
+                    command = commandList.get(i);
                }
-               if(iterator.next().equals(commandName)) {
+               if(command.isYours(commandName)){
+                    command.execute(input.split("\\s*;\\s*/\\s+"));
+               }
+               else{
+                    System.out.println("Command not found");
+               }
 
-               }
-          }while(!commandName.equals("exit"));
+          } while (!commandName.equals("exit"));
      }
 
-     public static void main(String[] args) {
-          new CLI().execute();
-     }
+          public static void main (String[]args){
+               new CLI().execute();
+          }
 
      /**
      public class CLI {
