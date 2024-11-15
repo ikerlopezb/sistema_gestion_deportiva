@@ -20,7 +20,8 @@ public class MatchList {
         return matches;
     }
 
-    private boolean paired(Player player){
+    public boolean isPaired(Player player){//Iker: cambio de private a public y cambio de nombre del método de paired a isPaired
+        assert this.playerList.existPlayer(player); //Iker: compruebo si el jugador que me pasan existe
         int i = 0;
         Player[] matchmake = this.matches.get(i).getPlayers();
         while(i < this.matches.size() && !(matchmake[0].equals(player) || matchmake[1].equals(player))){

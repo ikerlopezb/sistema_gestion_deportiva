@@ -24,7 +24,7 @@ public class PlayerList {
         while((iterator.next().getName().equals(playerName)) && iterator.hasNext()){
             iterator.next();
         }
-
+        return(iterator.next().getName().equals(playerName)) ? iterator.next() : null;//Iker
     }
 
     /*public void create(Player player){
