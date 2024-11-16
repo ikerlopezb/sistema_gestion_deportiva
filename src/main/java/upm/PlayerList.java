@@ -3,7 +3,11 @@ package upm;
 import java.util.*;
 
 public class PlayerList {
-    private List<Player> playerList = new ArrayList<Player>();//Debe ser en este caso protected un atributo?
+    private List<Player> playerList;//Debe ser en este caso protected un atributo?
+
+    public PlayerList(List<Player> playerList) {
+        this.playerList = playerList;
+    }
 
     public List<Player> getPlayerList() {
         return playerList;
@@ -21,7 +25,7 @@ public class PlayerList {
     public Player isPlayer (String playerName){
         assert !playerList.isEmpty();
         Iterator<Player> iterator = playerList.iterator();
-        while((iterator.next().getName().equals(playerName)) && iterator.hasNext()){
+        while(iterator.hasNext() && !(iterator.next().getName().equals(playerName))){
             iterator.next();
         }
         return(iterator.next().getName().equals(playerName)) ? iterator.next() : null;//Iker

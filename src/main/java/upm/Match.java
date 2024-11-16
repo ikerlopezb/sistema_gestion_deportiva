@@ -3,8 +3,8 @@ package upm;
 public class Match {
     private final Player[] arrayPlayers;
 
-    public Match() {
-        this.arrayPlayers = new Player[2];
+    public Match(Player[] arrayPlayers) {
+        this.arrayPlayers = arrayPlayers;
     }
 
     public Player[] getPlayers() {

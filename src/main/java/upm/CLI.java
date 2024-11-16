@@ -39,7 +39,7 @@ public class CLI {
                 command = commandList.get(i);
             }
             if (command.isYours(commandName)) {
-                command.execute(input.split("\\s*;\\s*/\\s+"));
+                command.execute(input.split(" "));
             } else {
                 System.out.println("Command not found");
             }

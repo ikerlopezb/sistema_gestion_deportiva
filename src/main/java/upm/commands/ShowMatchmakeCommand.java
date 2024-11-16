@@ -1,11 +1,13 @@
 package upm.commands;
 
 import upm.Match;
+import upm.MatchList;
 import upm.Player;
 
 import java.util.List;
 
 public class ShowMatchmakeCommand extends Command {
+    MatchList matchmake;
 
 
     public ShowMatchmakeCommand(){
@@ -20,7 +22,12 @@ public class ShowMatchmakeCommand extends Command {
             Player[] players = match.getPlayers();
             System.out.println(players[0].getName() + " vs " + players[1].getName());
         }
-
          */
+        for (Match matches : this.matchmake.getMatches()){
+            for (int i = 0; i <matches.getPlayers().length ; i++) {
+                System.out.println(matches.getPlayers()[i].getName());
+            }
+        }
+
     }
 }

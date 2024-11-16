@@ -17,7 +17,7 @@ public class MatchList {
     }
 
     public ArrayList<Match> getMatches() {
-        return matches;
+        return this.matches;
     }
 
     public boolean isPaired(Player player){//Iker: cambio de private a public y cambio de nombre del método de paired a isPaired
@@ -29,6 +29,13 @@ public class MatchList {
             matchmake = this.matches.get(i).getPlayers();
         }
         return matchmake[0].equals(player) || matchmake[1].equals(player);
+    }
+
+    public void imprimir(){
+        for(Match match: this.matches){
+            System.out.println(match.getPlayers()[0].getName());
+            System.out.println(match.getPlayers()[1].getName());
+        }
     }
 
     /*Command command = commandList.get(i);

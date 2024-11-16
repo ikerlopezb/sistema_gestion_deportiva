@@ -3,16 +3,14 @@ package upm.commands;
 import upm.Player;
 import upm.commands.Command;
 import upm.PlayerList;
-
+import java.util.ArrayList;
 public class CreateCommand extends Command {
 
-    PlayerList playerList;
-    //Scanner name = new Scanner(System.in);
-    //Player player = new Player(name.next());//Creo que te cogería "create"
+    private PlayerList playerList;
 
     public CreateCommand() {
         super("create");
-
+        this.playerList = new PlayerList(new ArrayList<>());
     }
 
     public void execute(String[] input) {
