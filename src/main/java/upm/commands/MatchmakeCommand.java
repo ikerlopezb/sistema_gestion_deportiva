@@ -10,10 +10,10 @@ public class MatchmakeCommand extends Command {
     MatchList matchmake;
     PlayerList playerList;
 
-    public MatchmakeCommand() {
+    public MatchmakeCommand(MatchList matchList, PlayerList playerList) {
         super("matchmake");
-        this.playerList = new PlayerList(new ArrayList<>());
-        this.matchmake = new MatchList(this.playerList);
+        this.playerList = playerList;
+        this.matchmake = matchList;
     }
 
     public void execute(String[] input) {

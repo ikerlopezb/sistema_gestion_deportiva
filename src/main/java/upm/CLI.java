@@ -14,7 +14,7 @@ public class CLI {
 
     public CLI() {
         commandList.add(new CreateCommand(this.playerList));
-        commandList.add(new RemoveCommand());
+        commandList.add(new RemoveCommand(this.playerList));
         commandList.add(new RankCommand());
         commandList.add(new ScoreCommand());
         commandList.add(new ShowCommand());

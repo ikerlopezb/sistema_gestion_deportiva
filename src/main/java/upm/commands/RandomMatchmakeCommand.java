@@ -11,8 +11,10 @@ public class RandomMatchmakeCommand extends Command {
     PlayerList playerList;
     MatchList matchList;
 
-    public RandomMatchmakeCommand(){
+    public RandomMatchmakeCommand(PlayerList playerList, MatchList matchList){
         super("random_matchmake");
+        this.playerList = playerList;
+        this.matchList = matchList;
     }
     public void execute(String[] input){
         assert input.length == 1;
