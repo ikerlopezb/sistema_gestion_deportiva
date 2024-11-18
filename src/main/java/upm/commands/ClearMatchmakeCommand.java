@@ -13,4 +13,4 @@ public class ClearMatchmakeCommand extends Command {
         assert input.length == 1;
         matchList.getMatches().clear();
     }
-}
+}w

@@ -8,9 +8,9 @@ public class CreateCommand extends Command {
 
     private PlayerList playerList;
 
-    public CreateCommand() {
+    public CreateCommand(PlayerList playerList) {
         super("create");
-        this.playerList = new PlayerList(new ArrayList<>());
+        this.playerList = playerList;
     }
 
     public void execute(String[] input) {

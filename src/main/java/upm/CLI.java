@@ -9,9 +9,11 @@ import java.util.Scanner;
 
 public class CLI {
     private final List<Command> commandList = new ArrayList<>();
+    private PlayerList playerList = new PlayerList(new ArrayList<>());
+    private MatchList matchList = new MatchList(this.playerList);
 
     public CLI() {
-        commandList.add(new CreateCommand());
+        commandList.add(new CreateCommand(this.playerList));
         commandList.add(new RemoveCommand());
         commandList.add(new RankCommand());
         commandList.add(new ScoreCommand());
