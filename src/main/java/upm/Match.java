@@ -14,4 +14,5 @@ public class Match {
     public Player[] getPlayers() {
         return arrayPlayers;
     }
+
 }

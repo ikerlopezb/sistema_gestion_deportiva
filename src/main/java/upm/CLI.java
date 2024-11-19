@@ -34,7 +34,7 @@ public class CLI {
 
         do {
             System.out.println("Introduce el comando");
-            input = scanner.nextLine();
+            input = scanner.nextLine().toLowerCase();
             commandName = input.split(" ")[0].trim();
             int i = 0;
             Command command = commandList.get(i);

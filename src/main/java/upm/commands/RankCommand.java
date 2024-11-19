@@ -18,5 +18,8 @@ public class RankCommand extends Command {
     public void execute(String[] input){
         ArrayList<Player> sortedPlayers = new ArrayList<>(playerList.getPlayerList());
         sortedPlayers.sort(Comparator.comparingDouble(Player::getScore).reversed());
+        for (Player player : sortedPlayers) {
+            System.out.println("Name: " + player.getName() + ", Score: " + player.getScore());
+        }
     }
 }

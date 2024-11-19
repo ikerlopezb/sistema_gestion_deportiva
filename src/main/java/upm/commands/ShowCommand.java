@@ -11,10 +11,10 @@ public class ShowCommand extends Command {
         super("show");
         this.playerList = playerList;
     }
-    public void execute(String[] input){
+    public void execute(String[] input) {
         assert input.length == 1;
-        for(Player player : this.playerList.getPlayerList()){
-            System.out.println(player + "\n");
+        for (Player player : this.playerList.getPlayerList()) {
+            System.out.println("Name: " + player.getName() + ", Score: " + player.getScore());
         }
     }
 }
