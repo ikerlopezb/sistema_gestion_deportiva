@@ -11,31 +11,39 @@ public class MatchList {
     private ArrayList<Match> matches; //como atributo lista de matches
     private PlayerList playerList;
 
-    public MatchList(PlayerList playerList){
+    public MatchList(PlayerList playerList) {
         this.playerList = playerList;
         this.matches = new ArrayList<Match>();
     }
 
-    public ArrayList<Match> getMatches() {
+    /*public ArrayList<Match> getMatches() {
         return this.matches;
-    }
+    }*/
 
-    public boolean isPaired(Player player){//Iker: cambio de private a public y cambio de nombre del método de paired a isPaired
-        assert this.playerList.existPlayer(player); //Iker: compruebo si el jugador que me pasan existe
+    public boolean isPaired(Player player) {//Iker: cambio de private a public y cambio de nombre del método de paired a isPaired
+        assert this.playerList.contains(player); //Iker: compruebo si el jugador que me pasan existe
         int i = 0;
         Player[] matchmake = this.matches.get(i).getPlayers();
-        while(i < this.matches.size() && !(matchmake[0].equals(player) || matchmake[1].equals(player))){
+        while (i < this.matches.size() && !(matchmake[0].equals(player) || matchmake[1].equals(player))) {
             i++;
             matchmake = this.matches.get(i).getPlayers();
         }
         return matchmake[0].equals(player) || matchmake[1].equals(player);
     }
 
-    public void imprimir(){
-        for(Match match: this.matches){
+    public void imprimir() {
+        for (Match match : this.matches) {
             System.out.println(match.getPlayers()[0].getName());
             System.out.println(match.getPlayers()[1].getName());
         }
+    }
+
+    public void clear(){
+        this.matches.clear();
+    }
+
+    public void add(Match match){
+        this.matches.add(match);
     }
 
     /*Command command = commandList.get(i);

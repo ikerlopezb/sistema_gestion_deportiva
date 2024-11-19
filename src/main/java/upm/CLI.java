@@ -6,22 +6,24 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import upm.MatchList;
+import upm.Match;
 
 public class CLI {
     private final List<Command> commandList = new ArrayList<>();
     private PlayerList playerList = new PlayerList(new ArrayList<>());
-    private MatchList matchList = new MatchList(this.playerList);
+    private MatchList matchList = new MatchList(this.playerList) ;
 
     public CLI() {
         commandList.add(new CreateCommand(this.playerList));
         commandList.add(new RemoveCommand(this.playerList));
-        commandList.add(new RankCommand());
-        commandList.add(new ScoreCommand());
-        commandList.add(new ShowCommand());
-        commandList.add(new MatchmakeCommand());
-        commandList.add(new RandomMatchmakeCommand());
-        commandList.add(new ShowMatchmakeCommand());
-        commandList.add(new ClearMatchmakeCommand());
+        commandList.add(new RankCommand(this.playerList));
+        commandList.add(new ScoreCommand(this.playerList));
+        commandList.add(new ShowCommand(this.playerList));
+        commandList.add(new MatchmakeCommand(this.matchList, this.playerList));
+        commandList.add(new RandomMatchmakeCommand(this.playerList, this.matchList));
+        commandList.add(new ShowMatchmakeCommand(this.matchList));
+        commandList.add(new ClearMatchmakeCommand(this.matchList));
         commandList.add(new ExitCommand());
     }
 
@@ -36,7 +38,7 @@ public class CLI {
             commandName = input.split(" ")[0].trim();
             int i = 0;
             Command command = commandList.get(i);
-            while (i < commandList.size() && !command.isYours(commandName)) {
+            while (i < this.commandList.size() && !command.isYours(commandName)) {
                 i++;
                 command = commandList.get(i);
             }

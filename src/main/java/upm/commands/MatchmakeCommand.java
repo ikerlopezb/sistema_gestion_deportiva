@@ -4,6 +4,7 @@ import upm.MatchList;
 import upm.PlayerList;
 import upm.Player;
 import upm.Match;
+
 import java.util.ArrayList;
 
 public class MatchmakeCommand extends Command {
@@ -23,16 +24,17 @@ public class MatchmakeCommand extends Command {
                 this.matchmake.isPaired(this.playerList.isPlayer(input[2])))) {
             Player[] match = new Player[]{this.playerList.isPlayer(input[1]), this.playerList.isPlayer(input[2])};
             Match matchmake = new Match(match);
-            this.matchmake.getMatches().add(matchmake);
-            for (int i = 0; i < match.length ; i++) {
+            this.matchmake.add(matchmake);
+            //Código comprobación
+            for (int i = 0; i < match.length; i++) {
                 System.out.println(match[i].getName());//Imprime nombre de los dos jugadores.
             }
             System.out.println("Bucle 1 completado");
 
-            for (Match ignored : this.matchmake.getMatches()){
+            /*for (Match ignored : this.matchmake.getMatches()){
                 System.out.println(ignored.getPlayers()[0].getName());
                 System.out.println(ignored.getPlayers()[1].getName());
-            }
+            }*/
         }
     }
 }

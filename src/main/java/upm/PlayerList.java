@@ -3,24 +3,24 @@ package upm;
 import java.util.*;
 
 public class PlayerList {
-    private List<Player> playerList;//Debe ser en este caso protected un atributo?
+    private ArrayList<Player> playerList;//Debe ser en este caso protected un atributo?
 
-    public PlayerList(List<Player> playerList) {
+    public PlayerList(ArrayList<Player> playerList) {
         this.playerList = playerList;
     }
 
-    public List<Player> getPlayerList() {
+    public ArrayList<Player> getPlayerList() {
         return playerList;
     }
 
-    public boolean existPlayer(Player player) {
+    /*public boolean existPlayer(Player player) {
         assert !playerList.isEmpty();
         Iterator<Player> iterator = playerList.iterator();
         while ((iterator.next().getName().equals(player.getName())) && iterator.hasNext()) {
             iterator.next();
         }
         return playerList.contains(player);
-    }
+    }*/
 
     public Player isPlayer (String playerName){
         assert !playerList.isEmpty();
@@ -30,6 +30,26 @@ public class PlayerList {
         }
         return(iterator.next().getName().equals(playerName)) ? iterator.next() : null;//Iker
     }
+
+    public void add(Player player){
+        this.playerList.add(player);
+    }
+
+    public boolean contains(Player player){
+        return this.playerList.contains(player);
+    }
+
+    public int size(){
+        return this.playerList.size();
+    }
+
+    public void remove(Player player) {
+        this.playerList.remove(player);
+    }
+
+
+
+
 
     /*public void create(Player player){
         assert listOfPlayers.size() <= 100;

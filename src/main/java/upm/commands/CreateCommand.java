@@ -18,9 +18,9 @@ public class CreateCommand extends Command {
         assert input.length == 2;
         String playerName = input[1];
         Player player = new Player(playerName);
-        if (!playerList.getPlayerList().contains(player)) {
-            playerList.getPlayerList().add(player);
-            System.out.println("Player " + playerName + " creado.");//Preguntar si está bien poner un print en execute
+        if (!playerList.contains(player)) {
+            playerList.add(player);
+            System.out.println("Player " + playerName + " creado.");//Enum error
         } else {
             System.out.println("Player " + playerName + " ya existe.");
         }

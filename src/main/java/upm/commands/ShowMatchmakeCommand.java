@@ -3,15 +3,15 @@ package upm.commands;
 import upm.Match;
 import upm.MatchList;
 import upm.Player;
-
 import java.util.List;
 
 public class ShowMatchmakeCommand extends Command {
-    MatchList matchmake;
+    MatchList matches;
 
 
-    public ShowMatchmakeCommand(){
+    public ShowMatchmakeCommand(MatchList matches){
         super("show_matchmake");
+        this.matches = matches;
     }
     public void execute(String[] input){
         assert input.length == 1;
@@ -23,7 +23,7 @@ public class ShowMatchmakeCommand extends Command {
             System.out.println(players[0].getName() + " vs " + players[1].getName());
         }
          */
-        for (Match matches : this.matchmake.getMatches()){
+        for (Match matches : this.matches.getMatches()){
             for (int i = 0; i <matches.getPlayers().length ; i++) {
                 System.out.println(matches.getPlayers()[i].getName());
             }

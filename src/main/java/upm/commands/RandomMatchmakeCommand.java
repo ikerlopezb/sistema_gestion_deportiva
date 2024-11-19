@@ -19,7 +19,16 @@ public class RandomMatchmakeCommand extends Command {
     public void execute(String[] input){
         assert input.length == 1;
         Random random = new Random();
-        //random.
+        int playersWithoutMatch = this.playerList.size();
+
+        if(playersWithoutMatch % 2 == 0) {
+            while(playersWithoutMatch > 0) {
+                int index = random.nextInt(0, playerList.size() - 1);
+
+                playersWithoutMatch--;
+            }
+
+        }
 
 
     }

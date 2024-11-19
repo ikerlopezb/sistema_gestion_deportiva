@@ -7,8 +7,9 @@ import java.lang.String;
 public class ShowCommand extends Command {
     private PlayerList playerList;
 
-    public ShowCommand(PlayerList p){
+    public ShowCommand(PlayerList playerList){
         super("show");
+        this.playerList = playerList;
     }
     public void execute(String[] input){
         return;
