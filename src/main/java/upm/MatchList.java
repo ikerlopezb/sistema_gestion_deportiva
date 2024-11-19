@@ -48,6 +48,10 @@ public class MatchList {
 
     public int size() { return this.matches.size(); }
 
+    public Iterator getiterator() {
+        return this.matches.iterator();
+    }
+
     /*Command command = commandList.get(i);
             while (i < commandList.size() && !command.isYours(commandName)) {
         i++;

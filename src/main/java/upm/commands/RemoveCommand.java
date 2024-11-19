@@ -14,9 +14,9 @@ public class RemoveCommand extends Command {
 
     public void execute(String[] input) {
         assert input.length == 2;
-        Player player = playerList.isPlayer(input[2]);
-        if(playerList.contains(player)) {
-            playerList.remove(player);
+        Player player = this.playerList.isPlayer(input[1]);
+        if(player != null) {
+            this.playerList.remove(player);
             System.out.println("Player" + player.getName() + "ha sido eliminado");
         } else {
             System.out.println("Player" + player.getName() + "no existe");

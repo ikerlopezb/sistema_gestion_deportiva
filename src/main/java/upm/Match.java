@@ -7,6 +7,10 @@ public class Match {
         this.arrayPlayers = arrayPlayers;
     }
 
+    public int length(){
+        return this.arrayPlayers.length;
+    }
+
     public Player[] getPlayers() {
         return arrayPlayers;
     }

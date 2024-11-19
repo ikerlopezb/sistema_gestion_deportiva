@@ -3,6 +3,8 @@ package upm.commands;
 import upm.Match;
 import upm.MatchList;
 import upm.Player;
+
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -24,17 +26,16 @@ public class ShowMatchmakeCommand extends Command {
             System.out.println(players[0].getName() + " vs " + players[1].getName());
         }
          */
-        for (Match match : this.matches){
-            for (int i = 0; i <matches.getPlayers().length ; i++) {
-                System.out.println(matches.getPlayers()[i].getName());
+
+        Iterator<Match> iterator = matches.getiterator();
+        while(iterator.hasNext()) {
+            Match match = iterator.next();
+            for (int i = 0; i < match.length(); i++) {
+                System.out.println(match.getPlayers()[i]);
             }
         }
 
-        for (int i = 0; i < matches.size(); i++) {
-            for (int j = 0; j < ; j++) {
 
-            }
-        }
 
     }
 }
