@@ -22,19 +22,33 @@ public class RandomMatchmakeCommand extends Command {
         int playersWithoutMatch = this.playerList.size();
 
         if(playersWithoutMatch % 2 == 0) {
-            while(playersWithoutMatch > 0) {
-                Player[] match = new Player[2];
-                int i = 0;
-                while(match.length < 2) {
-                    int randomIndex = random.nextInt(0, playerList.size() - 1);
-                    Player player = this.playerList.getIndex(randomIndex);
-                    if(this.)
-                    playersWithoutMatch--;
-                }
+            while(playersWithoutMatch > 0){
+                randomMatchmake();
+                playersWithoutMatch -= 2;
             }
-
         }
+    }
 
+    private Player randomPlayer() {
+        Random random = new Random();
+        int randomIndex = random.nextInt(0, this.playerList.size());
+        Player player = this.playerList.getIndex(randomIndex);
+        return player;
+    }
 
+    private Match randomMatchmake(){
+        Match match = null;
+        Player[] matchmake = new Player[2];
+        Player player = null;
+        int i = 0;
+        while(matchmake.length < 2) {
+            player = randomPlayer();
+            if (!this.matchList.isPaired(player)){
+                matchmake[i] = player;
+                i++;
+            }
+        }
+        match = new Match(matchmake);
+        return match;
     }
 }

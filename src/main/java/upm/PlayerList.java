@@ -22,24 +22,28 @@ public class PlayerList {
         return playerList.contains(player);
     }*/
 
-    public Player isPlayer (String playerName){
-        assert !playerList.isEmpty();
-        Iterator<Player> iterator = playerList.iterator();
-        while(iterator.hasNext() && !(iterator.next().getName().equals(playerName))){
-            iterator.next();
+    public Player isPlayer(String playerName) {
+        if (!this.playerList.isEmpty()) {
+            Iterator<Player> iterator = this.playerList.iterator();
+            while (iterator.hasNext() && !(iterator.next().getName().equals(playerName))) {
+                iterator.next();
+            }
+            Player player = iterator.next();
+            return (iterator.next().getName().equals(playerName)) ? player: null;
+        } else {
+            return null;
         }
-        return(iterator.next().getName().equals(playerName)) ? iterator.next() : null;//Iker
     }
 
-    public void add(Player player){
+    public void add(Player player) {
         this.playerList.add(player);
     }
 
-    public boolean contains(Player player){
+    public boolean contains(Player player) {
         return this.playerList.contains(player);
     }
 
-    public int size(){
+    public int size() {
         return this.playerList.size();
     }
 
@@ -47,7 +51,7 @@ public class PlayerList {
         this.playerList.remove(player);
     }
 
-    public Player getIndex(int i){
+    public Player getIndex(int i) {
         return this.playerList.get(i);
     }
 
