@@ -2,6 +2,7 @@ package upm.commands;
 
 import upm.Player;
 import upm.PlayerList;
+import java.util.ArrayList;
 import upm.commands.Command;
 
 import java.util.Collections;
@@ -15,6 +16,7 @@ public class RankCommand extends Command {
         this.playerList = playerList;
     }
     public void execute(String[] input){
-        return;
+        ArrayList<Player> sortedPlayers = new ArrayList<>(playerList.getPlayerList());
+        sortedPlayers.sort(Comparator.comparingDouble(Player::getScore).reversed());
     }
 }

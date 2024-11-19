@@ -12,6 +12,9 @@ public class ShowCommand extends Command {
         this.playerList = playerList;
     }
     public void execute(String[] input){
-        return;
+        assert input.length == 1;
+        for(Player player : this.playerList.getPlayerList()){
+            System.out.println(player + "\n");
+        }
     }
 }
