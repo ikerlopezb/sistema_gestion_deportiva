@@ -46,6 +46,8 @@ public class MatchList {
         this.matches.add(match);
     }
 
+    public int size() { return this.matches.size(); }
+
     /*Command command = commandList.get(i);
             while (i < commandList.size() && !command.isYours(commandName)) {
         i++;
