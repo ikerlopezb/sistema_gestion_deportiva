@@ -47,6 +47,10 @@ public class PlayerList {
         this.playerList.remove(player);
     }
 
+    public Player getIndex(int i){
+        return this.playerList.get(i);
+    }
+
 
 
 

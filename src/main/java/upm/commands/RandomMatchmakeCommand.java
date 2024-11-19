@@ -6,10 +6,10 @@ import upm.PlayerList;
 import upm.MatchList;
 import upm.Match;
 import java.util.Random;
-
+import java.util.ArrayList;
 public class RandomMatchmakeCommand extends Command {
-    PlayerList playerList;
-    MatchList matchList;
+    private PlayerList playerList;
+    private MatchList matchList;
 
     public RandomMatchmakeCommand(PlayerList playerList, MatchList matchList){
         super("random_matchmake");
@@ -23,9 +23,14 @@ public class RandomMatchmakeCommand extends Command {
 
         if(playersWithoutMatch % 2 == 0) {
             while(playersWithoutMatch > 0) {
-                int index = random.nextInt(0, playerList.size() - 1);
-
-                playersWithoutMatch--;
+                Player[] match = new Player[2];
+                int i = 0;
+                while(match.length < 2) {
+                    int randomIndex = random.nextInt(0, playerList.size() - 1);
+                    Player player = this.playerList.getIndex(randomIndex);
+                    if(this.)
+                    playersWithoutMatch--;
+                }
             }
 
         }
