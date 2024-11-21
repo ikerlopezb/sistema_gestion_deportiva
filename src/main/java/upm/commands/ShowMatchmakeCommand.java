@@ -13,7 +13,7 @@ public class ShowMatchmakeCommand extends Command {
 
 
     public ShowMatchmakeCommand(MatchList matches){
-        super("shomatchmake");
+        super("sho_matchmake");
         this.matches = matches;
     }
     public void execute(String[] input){
@@ -33,7 +33,8 @@ public class ShowMatchmakeCommand extends Command {
         while(iterator.hasNext()) {
             Match match = iterator.next();
             for (int i = 0; i < match.length(); i++) {
-                System.out.println(match.getPlayers()[i]); //esto se imprime mal tiene que tener el formato de arriba
+                System.out.print(match.getPlayers()[i].getName() + " vs ");
+                //esto se imprime mal tiene que tener el formato de arriba
             }
         }
     }

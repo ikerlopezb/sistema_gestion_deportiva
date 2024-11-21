@@ -1,24 +1,20 @@
 package upm;
 
-import upm.commands.Command;
-
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 
 public class MatchList {
 
 
-    private ArrayList<Match> matches; //como atributo lista de matches
+    private ArrayList<Match> matchList; //como atributo lista de matches
     private PlayerList playerList;
 
     public MatchList(PlayerList playerList) {
         this.playerList = playerList;
-        this.matches = new ArrayList<Match>();
+        this.matchList = new ArrayList<Match>();
     }
-    public ArrayList<Match> getMatches() {
-        return matches;
+    public ArrayList<Match> getMatchList() {
+        return matchList;
     }
 
     /*public ArrayList<Match> getMatches() {
@@ -27,34 +23,47 @@ public class MatchList {
 
     public boolean isPaired(Player player) {//Iker: cambio de private a public y cambio de nombre del método de paired a isPaired
         assert this.playerList.contains(player); //Iker: compruebo si el jugador que me pasan existe
-        int i = 0;
-        Player[] matchmake = this.matches.get(i).getPlayers();
-        while (i < this.matches.size() && !(matchmake[0].equals(player) || matchmake[1].equals(player))) {
-            i++;
-            matchmake = this.matches.get(i).getPlayers();
+        if(!matchList.isEmpty() /*&& notInMatchmake(matchmake, player)*/){
+            int i = 0;
+            Player[] matchmake = this.matchList.get(i).getPlayers();
+            while (i < this.matchList.size() && !(matchmake[0].equals(player) || matchmake[1].equals(player))) {
+                i++;
+                matchmake = this.matchList.get(i).getPlayers();
+            }
+            return matchmake[0].equals(player) || matchmake[1].equals(player);
         }
-        return matchmake[0].equals(player) || matchmake[1].equals(player);
+        else{
+            return false;
+        }
+
     }
+    /*
+    private boolean notInMatchmake(Match match, Player player){
+        comprueba si el jugador está emparejado él solo a la espera de otro compañero.
+        La función de este método es que no empareje dos veces el mismo jugador cuando haces
+        un random_matchmake
+    }
+    */
 
     public void imprimir() {
-        for (Match match : this.matches) {
+        for (Match match : this.matchList) {
             System.out.println(match.getPlayers()[0].getName());
             System.out.println(match.getPlayers()[1].getName());
         }
     }
 
     public void clear(){
-        this.matches.clear();
+        this.matchList.clear();
     }
 
     public void add(Match match){
-        this.matches.add(match);
+        this.matchList.add(match);
     }
 
-    public int size() { return this.matches.size(); }
+    public int size() { return this.matchList.size(); }
 
     public Iterator getiterator() {
-        return this.matches.iterator();
+        return this.matchList.iterator();
     }
 
     /*Command command = commandList.get(i);
