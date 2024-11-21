@@ -25,11 +25,13 @@ public class PlayerList {
     public Player isPlayer(String playerName) {
         if (!this.playerList.isEmpty()) {
             Iterator<Player> iterator = this.playerList.iterator();
-            while (iterator.hasNext() && !(iterator.next().getName().equals(playerName))) {
-                iterator.next();
-            }
             Player player = iterator.next();
-            return (iterator.next().getName().equals(playerName)) ? player: null;
+
+            while (iterator.hasNext() && !(player.getName().equals(playerName))) {
+                player = iterator.next();
+            }
+
+            return (player.getName().equals(playerName)) ? player: null;
         } else {
             return null;
         }

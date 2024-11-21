@@ -13,29 +13,28 @@ public class ShowMatchmakeCommand extends Command {
 
 
     public ShowMatchmakeCommand(MatchList matches){
-        super("show_matchmake");
+        super("shomatchmake");
         this.matches = matches;
     }
     public void execute(String[] input){
         assert input.length == 1;
-        /*if (matches.isEmpty()) {
+        /*if (matches.size() == 0) {
             System.out.println("No hay emparejamientos en el sistema.");
         }
-        for (Match match : matches) {
-            Player[] players = match.getPlayers();
-            System.out.println(players[0].getName() + " vs " + players[1].getName());
-        }
-         */
-
-        Iterator<Match> iterator = matches.getiterator();
-        while(iterator.hasNext()) {
-            Match match = iterator.next();
-            for (int i = 0; i < match.length(); i++) {
-                System.out.println(match.getPlayers()[i]);
+        else{
+            for (Match match : this.matches.getMatches()) {
+                Player[] players = match.getPlayers();
+                System.out.println(players[0].getName() + " vs " + players[1].getName());
             }
         }
 
-
-
+         */
+       Iterator<Match> iterator = matches.getiterator();
+        while(iterator.hasNext()) {
+            Match match = iterator.next();
+            for (int i = 0; i < match.length(); i++) {
+                System.out.println(match.getPlayers()[i]); //esto se imprime mal tiene que tener el formato de arriba
+            }
+        }
     }
 }

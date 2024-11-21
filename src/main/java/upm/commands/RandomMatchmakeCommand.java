@@ -18,7 +18,6 @@ public class RandomMatchmakeCommand extends Command {
     }
     public void execute(String[] input){
         assert input.length == 1;
-        Random random = new Random();
         int playersWithoutMatch = this.playerList.size();
 
         if(playersWithoutMatch % 2 == 0) {

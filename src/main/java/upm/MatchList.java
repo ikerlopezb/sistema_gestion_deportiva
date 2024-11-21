@@ -8,12 +8,17 @@ import java.util.List;
 import java.util.Random;
 
 public class MatchList {
+
+
     private ArrayList<Match> matches; //como atributo lista de matches
     private PlayerList playerList;
 
     public MatchList(PlayerList playerList) {
         this.playerList = playerList;
         this.matches = new ArrayList<Match>();
+    }
+    public ArrayList<Match> getMatches() {
+        return matches;
     }
 
     /*public ArrayList<Match> getMatches() {
