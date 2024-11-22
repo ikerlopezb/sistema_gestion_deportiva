@@ -12,11 +12,12 @@ public class ShowMatchmakeCommand extends Command {
     MatchList matches;
 
 
-    public ShowMatchmakeCommand(MatchList matches){
-        super("sho_matchmake");
+    public ShowMatchmakeCommand(MatchList matches) {
+        super("show_matchmake");
         this.matches = matches;
     }
-    public void execute(String[] input){
+
+    public void execute(String[] input) {
         assert input.length == 1;
         /*if (matches.size() == 0) {
             System.out.println("No hay emparejamientos en el sistema.");
@@ -29,12 +30,12 @@ public class ShowMatchmakeCommand extends Command {
         }
 
          */
-       Iterator<Match> iterator = matches.getiterator();
-        while(iterator.hasNext()) {
+        Iterator<Match> iterator = matches.getiterator();
+        while (iterator.hasNext()) {
             Match match = iterator.next();
-            for (int i = 0; i < match.length(); i++) {
-                System.out.print(match.getPlayers()[i].getName() + " vs ");
-                //esto se imprime mal tiene que tener el formato de arriba
+            for (int i = 0; i + 1 < match.length(); i++) {
+                System.out.print(match.getPlayers()[i].getName() + " vs " + match.getPlayers()[i].getName());
+                //compruebo que el siguiente jugador al actual no sea null.
             }
         }
     }
