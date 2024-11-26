@@ -3,7 +3,7 @@ package upm;
 import java.util.*;
 
 public class PlayerList {
-    private ArrayList<Player> playerList;//Debe ser en este caso protected un atributo?
+    private ArrayList<Player> playerList;
 
     public PlayerList(ArrayList<Player> playerList) {
         this.playerList = playerList;

@@ -19,17 +19,6 @@ public class ShowMatchmakeCommand extends Command {
 
     public void execute(String[] input) {
         assert input.length == 1;
-        /*if (matches.size() == 0) {
-            System.out.println("No hay emparejamientos en el sistema.");
-        }
-        else{
-            for (Match match : this.matches.getMatches()) {
-                Player[] players = match.getPlayers();
-                System.out.println(players[0].getName() + " vs " + players[1].getName());
-            }
-        }
-
-         */
         Iterator<Match> iterator = matches.getiterator();
         while (iterator.hasNext()) {
             Match match = iterator.next();

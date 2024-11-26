@@ -2,7 +2,7 @@ package upm;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
+import upm.Match;
 public class MatchList {
 
 
@@ -21,29 +21,23 @@ public class MatchList {
         return this.matches;
     }*/
 
-    public boolean isPaired(Player player) {//Iker: cambio de private a public y cambio de nombre del método de paired a isPaired
-        assert this.playerList.contains(player); //Iker: compruebo si el jugador que me pasan existe
-        if(!matchList.isEmpty() /*&& notInMatchmake(matchmake, player)*/){
+    public boolean isPaired(Player player) {
+        assert this.playerList.contains(player);
+        if(!matchList.isEmpty()){
             int i = 0;
-            Player[] matchmake = this.matchList.get(i).getPlayers();
-            while (i < this.matchList.size() && !(matchmake[0].equals(player) || matchmake[1].equals(player))) {
+            Player[] arrayPlayers = this.matchList.get(i).getPlayers();
+
+            while (i < this.matchList.size() && !(arrayPlayers[0].equals(player) || arrayPlayers[1].equals(player))) {
                 i++;
-                matchmake = this.matchList.get(i).getPlayers();
+                arrayPlayers = this.matchList.get(i).getPlayers();
             }
-            return matchmake[0].equals(player) || matchmake[1].equals(player);
+            return arrayPlayers[0].equals(player) || arrayPlayers[1].equals(player);
         }
         else{
             return false;
         }
+    }
 
-    }
-    /*
-    private boolean notInMatchmake(Match match, Player player){
-        comprueba si el jugador está emparejado él solo a la espera de otro compañero.
-        La función de este método es que no empareje dos veces el mismo jugador cuando haces
-        un random_matchmake
-    }
-    */
 
     public void imprimir() {
         for (Match match : this.matchList) {

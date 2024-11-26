@@ -12,7 +12,7 @@ public class MatchmakeCommand extends Command {
     PlayerList playerList;
 
     public MatchmakeCommand(MatchList matchList, PlayerList playerList) {
-        super("matchmake");
+        super("matchmake"); // no funciona el método
         this.playerList = playerList;
         this.matchmake = matchList;
     }
