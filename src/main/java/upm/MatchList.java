@@ -56,7 +56,7 @@ public class MatchList {
 
     public int size() { return this.matchList.size(); }
 
-    public Iterator getiterator() {
+    public Iterator getIterator() {
         return this.matchList.iterator();
     }
 

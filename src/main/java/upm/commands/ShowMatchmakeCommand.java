@@ -13,19 +13,15 @@ public class ShowMatchmakeCommand extends Command {
 
 
     public ShowMatchmakeCommand(MatchList matches) {
-        super("show_matchmake");
+        super("sho_matchmake");
         this.matches = matches;
     }
 
     public void execute(String[] input) {
         assert input.length == 1;
-        Iterator<Match> iterator = matches.getiterator();
-        while (iterator.hasNext()) {
-            Match match = iterator.next();
-            for (int i = 0; i + 1 < match.length(); i++) {
-                System.out.print(match.getPlayers()[i].getName() + " vs " + match.getPlayers()[i].getName());
-                //compruebo que el siguiente jugador al actual no sea null.
-            }
+        Iterator<Match> iterator = matches.getIterator();
+        for(Match match : this.matches.getMatchList()) {
+            System.out.print(match.getPlayers()[0].getName() + " vs " + match.getPlayers()[1].getName());
         }
     }
 }

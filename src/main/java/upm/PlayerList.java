@@ -10,7 +10,7 @@ public class PlayerList {
     }
 
     public ArrayList<Player> getPlayerList() {
-        return playerList;
+        return this.playerList;
     }
 
     /*public boolean existPlayer(Player player) {
