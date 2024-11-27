@@ -14,7 +14,7 @@ public class MatchList {
         this.matchList = new ArrayList<Match>();
     }
     public ArrayList<Match> getMatchList() {
-        return matchList;
+        return this.matchList;
     }
 
     /*public ArrayList<Match> getMatches() {
@@ -23,7 +23,7 @@ public class MatchList {
 
     public boolean isPaired(Player player) {
         assert this.playerList.contains(player);
-        if(!matchList.isEmpty()){
+        if(!this.matchList.isEmpty()){
             int i = 0;
             Player[] arrayPlayers = this.matchList.get(i).getPlayers();
 
@@ -59,56 +59,4 @@ public class MatchList {
     public Iterator getIterator() {
         return this.matchList.iterator();
     }
-
-    /*Command command = commandList.get(i);
-            while (i < commandList.size() && !command.isYours(commandName)) {
-        i++;
-        command = commandList.get(i);
-    }*/
-
-
-
-    /*public void matchmake(Player player1, Player player2){
-        if((!paired(player1) && exist(player1) )&& (!paired(player2) && exist(player2))){
-            Player[] matchmake = new Player[]{player1,player2};
-                matches.add(matchmake);
-        }
-    }
-
-
-
-    public void clearMatchmake(){
-        matches.clear();
-    }
-    public void showMatchmake(){ //Deberíamos mostrar también el score?
-        Iterator<Player[]> iterator = matches.iterator();
-        while(iterator.hasNext()) {
-            System.out.println(iterator.next()[0].getName() + " vs " + iterator.next()[1].getName());
-        }
-    }
-
-    public void randomMatchmake(){
-        assert listOfPlayers.size() % 2 == 0;
-        clearMatchmake();
-        int numPlayers = listOfPlayers.size();
-        do{
-            matches.add(matchmake());
-            numPlayers -= 2;
-        }while(numPlayers > 0);
-    }
-
-    private int randIndex(){
-        Random random = new Random();
-        int randInd = random.nextInt(listOfPlayers.size());
-        return paired(listOfPlayers.get(randInd)) ? randIndex() : randInd;
-    }
-
-    private Player[] matchmake(){
-        Player[] players = new Player[2];
-        for (int i = 0; i < players.length; i++) {
-            players[i] = listOfPlayers.get(randIndex());
-        }
-        return players;
-    }
-    */
 }
