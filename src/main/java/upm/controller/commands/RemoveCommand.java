@@ -1,24 +1,28 @@
-package upm.commands;
+package upm.controller.commands;
 
+import upm.Error;
 import upm.model.Player;
-import upm.PlayerController;
+import upm.controller.PlayerController;
+import upm.model.User;
+
+import java.util.List;
 
 public class RemoveCommand extends Command {
     private PlayerController playerController;
 
     public RemoveCommand(PlayerController playerlist) {
-        super("remove");
+        super("remove", List.of("Player"));
         this.playerController = playerlist;
     }
 
-    public void execute(String[] input) {
+    public Error execute(String[] input, User user) {
         assert input.length == 2;
         Player player = this.playerController.isPlayer(input[1]);
         if(player != null) {
-            this.playerController.remove(player);
-            System.out.println("Player" + player.getName() + "ha sido eliminado");
+            this.playerController.removePlayer(player);
+            return Error.NONE;
         } else {
-            System.out.println("Player" + player.getName() + "no existe");
+            return Error.PLAYER_NOT_FOUND;
         }
     }
 }

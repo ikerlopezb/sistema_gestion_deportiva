@@ -1,7 +1,7 @@
-package upm.commands;
+package upm.controller.commands;
 
 import upm.Match;
-import upm.MatchController;
+import upm.controller.MatchController;
 
 public class ShowMatchmakeCommand extends Command {
     MatchController matchController;

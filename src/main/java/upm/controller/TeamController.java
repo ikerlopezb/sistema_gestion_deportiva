@@ -1,7 +1,6 @@
-package upm;
+package upm.controller;
 
 
-import upm.model.Player;
 import upm.model.Team;
 import java.util.ArrayList;
 

@@ -1,27 +1,30 @@
-package upm.commands;
+package upm.controller.commands;
 
 import upm.model.Player;
-import upm.PlayerController;
+import upm.controller.PlayerController;
+import upm.model.User;
+
+import java.util.List;
 
 public class CreateCommand extends Command {
 
     private PlayerController playerController;
 
     public CreateCommand(PlayerController playerController) {
-        super("create");
+        super("create", List.of("Admin"));
         this.playerController = playerController;
     }
 
-    public void execute(String[] input) {
+    public void execute(String[] input, User user) {
 
         assert input.length == 2;
         String playerName = input[1];
         if (this.playerController.isPlayer(playerName) == null) {
             Player player = new Player(playerName);
-            playerController.add(player);
-            System.out.println("Player " + playerName + " creado.");//Enum error
+            playerController.addPlayer(player);
+            return Error.NONE;
         } else {
-            System.out.println("Player " + playerName + " ya existe.");
+            return Error.PLAYER_ALREADY_EXISTS;
         }
     }
 

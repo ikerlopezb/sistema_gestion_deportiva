@@ -1,9 +1,9 @@
-package upm.commands;
+package upm.controller.commands;
 
 
 import upm.model.Player;
-import upm.PlayerController;
-import upm.MatchController;
+import upm.controller.PlayerController;
+import upm.controller.MatchController;
 import upm.Match;
 import java.util.Collections;
 
@@ -19,7 +19,7 @@ public class RandomMatchmakeCommand extends Command {
 
     public void execute(String[] input) {
         assert input.length == 1;
-        this.matchController.clear();
+        this.matchController.clearmatchList();
         int playersWithoutMatch = this.playerController.size();
 
         if (playersWithoutMatch % 2 == 0) {
@@ -36,7 +36,7 @@ public class RandomMatchmakeCommand extends Command {
             arrayPlayers[0] = this.playerController.getIndex(i);
             arrayPlayers[1] = this.playerController.getIndex(i + 1);
             Match match = new Match(arrayPlayers);
-            this.matchController.add(match);
+            this.matchController.addMatch(match);
         }
     }
 }

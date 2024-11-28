@@ -1,6 +1,6 @@
-package upm.commands;
+package upm.controller.commands;
 import upm.model.Player;
-import upm.PlayerController;
+import upm.controller.PlayerController;
 
 import java.lang.String;
 public class ShowCommand extends Command {

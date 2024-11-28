@@ -1,7 +1,7 @@
-package upm.commands;
+package upm.controller.commands;
 
 import upm.model.Player;
-import upm.PlayerController;
+import upm.controller.PlayerController;
 import java.util.ArrayList;
 
 import java.util.Comparator;

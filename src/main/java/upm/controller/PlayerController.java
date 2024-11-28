@@ -1,8 +1,9 @@
-package upm;
+package upm.controller;
 
 import upm.model.Player;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class PlayerController {
     private ArrayList<Player> playerList;
@@ -30,11 +31,11 @@ public class PlayerController {
         }
     }
 
-    public void add(Player player) {
+    public void addPlayer(Player player) {
         this.playerList.add(player);
     }
 
-    public boolean contains(Player player) {
+    public boolean containsPlayer(Player player) {
         return this.playerList.contains(player);
     }
 
@@ -42,7 +43,7 @@ public class PlayerController {
         return this.playerList.size();
     }
 
-    public void remove(Player player) {
+    public void removePlayer(Player player) {
         this.playerList.remove(player);
     }
 
