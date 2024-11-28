@@ -3,27 +3,25 @@ package upm;
 import upm.commands.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-import upm.MatchList;
-import upm.Match;
+
 
 public class CLI {
     private final List<Command> commandList = new ArrayList<>();
-    private PlayerList playerList = new PlayerList(new ArrayList<>());
-    private MatchList matchList = new MatchList(this.playerList) ;
+    private PlayerController playerController = new PlayerController(new ArrayList<>());
+    private MatchController matchController = new MatchController(this.playerController) ;
 
     public CLI() {
-        commandList.add(new CreateCommand(this.playerList));
-        commandList.add(new RemoveCommand(this.playerList));
-        commandList.add(new RankCommand(this.playerList));
-        commandList.add(new ScoreCommand(this.playerList));
-        commandList.add(new ShowCommand(this.playerList));
-        commandList.add(new MatchmakeCommand(this.matchList, this.playerList));
-        commandList.add(new RandomMatchmakeCommand(this.playerList, this.matchList));
-        commandList.add(new ShowMatchmakeCommand(this.matchList));
-        commandList.add(new ClearMatchmakeCommand(this.matchList));
+        commandList.add(new CreateCommand(this.playerController));
+        commandList.add(new RemoveCommand(this.playerController));
+        commandList.add(new RankCommand(this.playerController));
+        commandList.add(new ScoreCommand(this.playerController));
+        commandList.add(new ShowCommand(this.playerController));
+        commandList.add(new MatchmakeCommand(this.matchController, this.playerController));
+        commandList.add(new RandomMatchmakeCommand(this.playerController, this.matchController));
+        commandList.add(new ShowMatchmakeCommand(this.matchController));
+        commandList.add(new ClearMatchmakeCommand(this.matchController));
         commandList.add(new ExitCommand());
     }
 

@@ -1,18 +1,16 @@
 package upm.commands;
 
-import upm.commands.Command;
-import upm.MatchList;
-import java.util.ArrayList;
+import upm.MatchController;
 
 public class ClearMatchmakeCommand extends Command {
-    MatchList matchList;
+    MatchController matchController;
 
-    public ClearMatchmakeCommand(MatchList matchList){
+    public ClearMatchmakeCommand(MatchController matchController){
         super("clear_matchmake");
-        this.matchList = matchList;
+        this.matchController = matchController;
     }
     public void execute(String[] input){
         assert input.length == 1;
-        this.matchList.clear();
+        this.matchController.clear();
     }
 }

@@ -1,22 +1,20 @@
 package upm.commands;
 
 import upm.Match;
-import upm.MatchList;
-
-import java.util.Iterator;
+import upm.MatchController;
 
 public class ShowMatchmakeCommand extends Command {
-    MatchList matchList;
+    MatchController matchController;
 
 
-    public ShowMatchmakeCommand(MatchList matchList) {
+    public ShowMatchmakeCommand(MatchController matchController) {
         super("sho_matchmake");
-        this.matchList = matchList;
+        this.matchController = matchController;
     }
 
     public void execute(String[] input) {
         assert input.length == 1;
-        for(Match match : this.matchList.getMatchList()) {
+        for(Match match : this.matchController.getMatchList()) {
             System.out.println(match.getPlayers()[0].getName() + " vs " + match.getPlayers()[1].getName());
         }
     }

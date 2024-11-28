@@ -1,11 +1,13 @@
 package upm;
 
+import upm.model.Player;
+
 import java.util.*;
 
-public class PlayerList {
+public class PlayerController {
     private ArrayList<Player> playerList;
 
-    public PlayerList(ArrayList<Player> playerList) {
+    public PlayerController(ArrayList<Player> playerList) {
         this.playerList = playerList;
     }
 

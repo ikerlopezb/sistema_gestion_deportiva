@@ -1,25 +1,24 @@
 package upm.commands;
 
-import upm.Player;
-import upm.commands.Command;
-import upm.PlayerList;
-import java.util.ArrayList;
+import upm.model.Player;
+import upm.PlayerController;
+
 public class CreateCommand extends Command {
 
-    private PlayerList playerList;
+    private PlayerController playerController;
 
-    public CreateCommand(PlayerList playerList) {
+    public CreateCommand(PlayerController playerController) {
         super("create");
-        this.playerList = playerList;
+        this.playerController = playerController;
     }
 
     public void execute(String[] input) {
 
         assert input.length == 2;
         String playerName = input[1];
-        if (this.playerList.isPlayer(playerName) == null) {
+        if (this.playerController.isPlayer(playerName) == null) {
             Player player = new Player(playerName);
-            playerList.add(player);
+            playerController.add(player);
             System.out.println("Player " + playerName + " creado.");//Enum error
         } else {
             System.out.println("Player " + playerName + " ya existe.");

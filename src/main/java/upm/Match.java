@@ -1,5 +1,7 @@
 package upm;
 
+import upm.model.Player;
+
 public class Match {
     private final Player[] arrayPlayers;
 
