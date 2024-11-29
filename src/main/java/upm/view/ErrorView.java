@@ -1,5 +1,6 @@
 package upm.view;
 
+import upm.Error;
 public class ErrorView {
 
     protected static final String[] MESSAGES = {
@@ -7,8 +8,14 @@ public class ErrorView {
             "Player already exists.",
             "Invalid command.",
             "Match already exists.",
-            "Player not authenticated."
+            "Player not authenticated.",
+            "Player already mached",
+            "Command not found"
     };
 
-    public abstract void show(Error error);
+    public void writeln(Error error){
+        if(!error.isNull()) {
+            System.out.println(MESSAGES[error.ordinal()]);
+        }
+    }
 }

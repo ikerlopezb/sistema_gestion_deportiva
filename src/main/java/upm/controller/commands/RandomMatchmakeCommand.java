@@ -5,19 +5,22 @@ import upm.model.Player;
 import upm.controller.PlayerController;
 import upm.controller.MatchController;
 import upm.Match;
+import upm.model.User;
+
 import java.util.Collections;
+import java.util.List;
 
 public class RandomMatchmakeCommand extends Command {
     private PlayerController playerController;
     private MatchController matchController;
 
     public RandomMatchmakeCommand(PlayerController playerController, MatchController matchController) {
-        super("random_matchmake");
+        super("random_matchmake", List.of("Admin"));
         this.playerController = playerController;
         this.matchController = matchController;
     }
 
-    public void execute(String[] input) {
+    public void execute(String[] input, User user) {
         assert input.length == 1;
         this.matchController.clearmatchList();
         int playersWithoutMatch = this.playerController.size();

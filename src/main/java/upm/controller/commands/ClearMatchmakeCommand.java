@@ -3,7 +3,7 @@ package upm.controller.commands;
 import upm.controller.MatchController;
 
 public class ClearMatchmakeCommand extends Command {
-    MatchController matchController;
+    private MatchController matchController;
 
     public ClearMatchmakeCommand(MatchController matchController){
         super("clear_matchmake");

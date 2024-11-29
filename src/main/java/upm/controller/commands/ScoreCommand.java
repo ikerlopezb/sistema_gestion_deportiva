@@ -2,9 +2,12 @@ package upm.controller.commands;
 
 import upm.model.Player;
 import upm.controller.PlayerController;
+import upm.view.ErrorView;
+import upm.Error;
 
 public class ScoreCommand extends Command {
-    PlayerController playerController;
+    private PlayerController playerController;
+    private ErrorView error;
     public ScoreCommand(PlayerController playerController){
         super("score");
         this.playerController = playerController;
@@ -14,6 +17,9 @@ public class ScoreCommand extends Command {
         Player player = playerController.isPlayer(input[1]);
         if(playerController.containsPlayer(player)) {
             player.setScore(Double.parseDouble(input[2]));
+        }
+        else{
+            error.writeln(Error.PLAYER_NOT_FOUND);
         }
     }
 }

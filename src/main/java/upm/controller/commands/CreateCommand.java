@@ -1,14 +1,17 @@
 package upm.controller.commands;
 
+import upm.Error;
 import upm.model.Player;
 import upm.controller.PlayerController;
 import upm.model.User;
+import upm.view.ErrorView;
 
 import java.util.List;
 
 public class CreateCommand extends Command {
 
     private PlayerController playerController;
+    private ErrorView error;
 
     public CreateCommand(PlayerController playerController) {
         super("create", List.of("Admin"));
@@ -22,9 +25,8 @@ public class CreateCommand extends Command {
         if (this.playerController.isPlayer(playerName) == null) {
             Player player = new Player(playerName);
             playerController.addPlayer(player);
-            return Error.NONE;
         } else {
-            return Error.PLAYER_ALREADY_EXISTS;
+            error.writeln(Error.PLAYER_ALREADY_EXISTS);
         }
     }
 

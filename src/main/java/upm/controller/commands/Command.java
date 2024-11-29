@@ -1,12 +1,13 @@
 package upm.controller.commands;
 
 import upm.model.User;
+import upm.view.ErrorView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class Command {
+public abstract class Command{
     private String preffix;
     private List<String> allowedRoles;
 

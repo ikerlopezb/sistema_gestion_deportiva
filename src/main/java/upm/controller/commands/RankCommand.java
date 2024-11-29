@@ -5,12 +5,13 @@ import upm.controller.PlayerController;
 import java.util.ArrayList;
 
 import java.util.Comparator;
+import java.util.List;
 
 public class RankCommand extends Command {
     private PlayerController playerController;
 
     public RankCommand(PlayerController playerController){
-        super("rank");
+        super("rank", List.of(""));
         this.playerController = playerController;
     }
     public void execute(String[] input){
