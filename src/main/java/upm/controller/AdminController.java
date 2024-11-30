@@ -2,10 +2,12 @@ package upm.controller;
 
 import java.util.ArrayList;
 import upm.model.Admin;
+import java.util.Iterator;
 
 public class AdminController {
 
     private ArrayList<Admin> adminList = new ArrayList<>();
+
 
     public AdminController() {
         adminList.add(new Admin("luis.fernandezm@upm.es", "1234"));
@@ -13,4 +15,18 @@ public class AdminController {
         adminList.add(new Admin("j.galloso@upm.es", "1234"));
         adminList.add(new Admin("andrejesus.cimmino@upm.es", "1234"));
     }
+
+    public boolean isAdmin (String email, String password) {
+        Iterator<Admin> iterator = adminList.iterator();
+        Admin adminInList =  iterator.next();
+
+        while (!adminInList.getEmail().equals(admin.getEmail()) &&
+                !adminInList.getPassword().equals(admin.getPassword()) && iterator.hasNext()) {
+            adminInList = iterator.next();
+        }
+        return adminInList.getEmail().equals(admin.getEmail()) &&
+                adminInList.getPassword().equals(admin.getPassword());
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package upm.model;
 
 import upm.Statistic;
+import upm.VisitorUser;
 import upm.model.User;
 
 import java.util.ArrayList;
@@ -35,6 +36,10 @@ public class Player extends User   {
 
     public String getRole() {
         return "Player";
+    }
+
+    public void accept(VisitorUser visitor) {
+        visitor.visit(this);
     }
 
 }

@@ -16,7 +16,7 @@ public class MatchmakeCommand extends Command {
     private ErrorView error;
 
     public MatchmakeCommand(MatchController matchController, PlayerController playerController) {
-        super("matchmake", List.of("Player", "Admin"));
+        super("matchmake");
         this.playerController = playerController;
         this.matchController = matchController;
     }

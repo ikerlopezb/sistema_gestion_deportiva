@@ -1,5 +1,6 @@
 package upm.view;
 
+import upm.controller.AdminController;
 import upm.controller.commands.*;
 import upm.controller.ControllerCommand;
 import upm.controller.MatchController;
@@ -16,6 +17,7 @@ public class CLI {
     public CLI() {
         PlayerController playerController = new PlayerController(new ArrayList<>());
         MatchController matchController = new MatchController(playerController);
+        AdminController adminController = new AdminController();
 
         List<Command> commandList = new ArrayList<>();
         commandList.add(new CreateCommand(playerController));
@@ -27,7 +29,7 @@ public class CLI {
         commandList.add(new RandomMatchmakeCommand(playerController, matchController));
         commandList.add(new ShowMatchmakeCommand(matchController));
         commandList.add(new ClearMatchmakeCommand(matchController));
-        commandList.add(new LoginCommand());
+        commandList.add(new LoginCommand(adminController, playerController));
         commandList.add(new LogoutCommand());
         commandList.add(new ExitCommand());
 

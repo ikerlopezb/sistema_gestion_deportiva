@@ -14,7 +14,7 @@ public class CreateCommand extends Command {
     private ErrorView error;
 
     public CreateCommand(PlayerController playerController) {
-        super("create", List.of("Admin"));
+        super("create");
         this.playerController = playerController;
     }
 

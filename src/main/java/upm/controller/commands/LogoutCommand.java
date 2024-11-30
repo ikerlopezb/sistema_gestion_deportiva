@@ -7,7 +7,7 @@ import java.util.List;
 public class LogoutCommand extends Command{
 
     public LogoutCommand(String preffix){
-        super("logout", List.of("Player", "Admin"));
+        super("logout");
     }
 
     public void execute(String[] input, User user){

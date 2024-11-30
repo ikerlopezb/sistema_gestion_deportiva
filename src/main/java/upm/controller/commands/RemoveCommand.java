@@ -12,7 +12,7 @@ public class RemoveCommand extends Command {
     private ErrorView error;
 
     public RemoveCommand(PlayerController playerlist) {
-        super("remove", List.of("Admin"));
+        super("remove");
         this.playerController = playerlist;
     }
 

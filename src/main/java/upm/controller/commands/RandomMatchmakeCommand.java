@@ -15,7 +15,7 @@ public class RandomMatchmakeCommand extends Command {
     private MatchController matchController;
 
     public RandomMatchmakeCommand(PlayerController playerController, MatchController matchController) {
-        super("random_matchmake", List.of("Admin"));
+        super("random_matchmake");
         this.playerController = playerController;
         this.matchController = matchController;
     }

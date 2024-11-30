@@ -11,7 +11,7 @@ public class RankCommand extends Command {
     private PlayerController playerController;
 
     public RankCommand(PlayerController playerController){
-        super("rank", List.of(""));
+        super("rank");
         this.playerController = playerController;
     }
     public void execute(String[] input){

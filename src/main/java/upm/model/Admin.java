@@ -1,5 +1,8 @@
 package upm.model;
 
+import upm.VisitorUser;
+import upm.controller.AdminController;
+
 import java.util.ArrayList;
 
 
@@ -14,14 +17,10 @@ public class Admin extends User {
         this.registeredTeams = new ArrayList<>();
     }
 
-    public ArrayList<Player> getRegisteredPlayers() {
-        return this.registeredPlayers;
-    }
-
-    public ArrayList<Team> getRegisteredTeams() {
-        return this.registeredTeams;
-    }
     public String getRole() {
         return "Admin";
+    }
+    public void accept(VisitorUser visitor){
+        visitor.visit(this);
     }
 }

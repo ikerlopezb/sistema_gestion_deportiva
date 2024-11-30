@@ -1,6 +1,7 @@
 package upm.controller.commands;
 import upm.model.Player;
 import upm.controller.PlayerController;
+import upm.model.User;
 
 import java.lang.String;
 public class ShowCommand extends Command {
@@ -10,7 +11,7 @@ public class ShowCommand extends Command {
         super("show");
         this.playerController = playerController;
     }
-    public void execute(String[] input) {
+    public void execute(String[] input, User user) {
         assert input.length == 1;
         for (Player player : this.playerController.getPlayerList()) {
             System.out.println("Name: " + player.getName() + ", Score: " + player.getScore());

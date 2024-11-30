@@ -9,11 +9,9 @@ import java.util.List;
 
 public abstract class Command{
     private String preffix;
-    private List<String> allowedRoles;
 
-    public Command(String preffix, List<String> allowedRoles){
+    public Command(String preffix){
         this.preffix = preffix;
-        this.allowedRoles = allowedRoles;
     }
     public abstract void execute(String[] input, User user);
 
@@ -21,7 +19,4 @@ public abstract class Command{
         return input.startsWith(this.preffix);
     }
 
-    public boolean isAllowed(User user) {
-        return allowedRoles.contains(user.getRole());
-    }
 }
