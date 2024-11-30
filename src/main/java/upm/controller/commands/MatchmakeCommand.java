@@ -1,35 +1,34 @@
 package upm.controller.commands;
 
-import upm.controller.MatchController;
-import upm.controller.PlayerController;
+import upm.list.MatchList;
+import upm.list.PlayerList;
 import upm.model.Player;
-import upm.Match;
+import upm.model.Match;
 import upm.Error;
 import upm.model.User;
-import java.util.List;
 import upm.view.ErrorView;
 
 
 public class MatchmakeCommand extends Command {
-    private MatchController matchController;
-    private PlayerController playerController;
+    private MatchList matchList;
+    private PlayerList playerList;
     private ErrorView error;
 
-    public MatchmakeCommand(MatchController matchController, PlayerController playerController) {
+    public MatchmakeCommand(MatchList matchList, PlayerList playerList) {
         super("matchmake");
-        this.playerController = playerController;
-        this.matchController = matchController;
+        this.playerList = playerList;
+        this.matchList = matchList;
     }
 
     public void execute(String[] input, User user) {
         assert input.length == 3;
 
-        if (!(this.matchController.isPaired(this.playerController.isPlayer(input[1])) &&
-                this.matchController.isPaired(this.playerController.isPlayer(input[2])))) {
+        if (!(this.matchList.isPaired(this.playerList.isPlayer(input[1])) &&
+                this.matchList.isPaired(this.playerList.isPlayer(input[2])))) {
 
-            Player[] arrayPlayers = new Player[]{this.playerController.isPlayer(input[1]), this.playerController.isPlayer(input[2])};
+            Player[] arrayPlayers = new Player[]{this.playerList.isPlayer(input[1]), this.playerList.isPlayer(input[2])};
             Match match = new Match(arrayPlayers);
-            this.matchController.addMatch(match);
+            this.matchList.addMatch(match);
         }
         else{
             error.writeln(Error.PLAYER_ALREADY_MATCHED);

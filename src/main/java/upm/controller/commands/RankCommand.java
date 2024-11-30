@@ -1,21 +1,20 @@
 package upm.controller.commands;
 
 import upm.model.Player;
-import upm.controller.PlayerController;
+import upm.list.PlayerList;
 import java.util.ArrayList;
 
 import java.util.Comparator;
-import java.util.List;
 
 public class RankCommand extends Command {
-    private PlayerController playerController;
+    private PlayerList playerList;
 
-    public RankCommand(PlayerController playerController){
+    public RankCommand(PlayerList playerList){
         super("rank");
-        this.playerController = playerController;
+        this.playerList = playerList;
     }
     public void execute(String[] input){
-        ArrayList<Player> sortedPlayers = new ArrayList<>(playerController.getPlayerList());
+        ArrayList<Player> sortedPlayers = new ArrayList<>(playerList.getPlayerList());
         sortedPlayers.sort(Comparator.comparingDouble(Player::getScore).reversed());
         for (Player player : sortedPlayers) {
             System.out.println("Name: " + player.getName() + ", Score: " + player.getScore());

@@ -1,32 +1,40 @@
 package upm.controller;
 
-import java.util.ArrayList;
-import upm.model.Admin;
-import java.util.Iterator;
+import upm.Error;
+import upm.list.MatchList;
+import upm.list.PlayerList;
+import upm.model.Player;
+import upm.view.ErrorView;
 
 public class AdminController {
 
-    private ArrayList<Admin> adminList = new ArrayList<>();
+    private PlayerList playerList;
+    private MatchList matchList;
+    private ErrorView error;
 
-
-    public AdminController() {
-        adminList.add(new Admin("luis.fernandezm@upm.es", "1234"));
-        adminList.add(new Admin("j.benal@upm.es", "1234"));
-        adminList.add(new Admin("j.galloso@upm.es", "1234"));
-        adminList.add(new Admin("andrejesus.cimmino@upm.es", "1234"));
+    public AdminController(PlayerList playerList, MatchList matchList) {
+        this.playerList = playerList;
+        this.matchList = matchList;
     }
-
-    public boolean isAdmin (String email, String password) {
-        Iterator<Admin> iterator = adminList.iterator();
-        Admin adminInList =  iterator.next();
-
-        while (!adminInList.getEmail().equals(admin.getEmail()) &&
-                !adminInList.getPassword().equals(admin.getPassword()) && iterator.hasNext()) {
-            adminInList = iterator.next();
+    public void createPlayer(String playerName){
+        if (this.playerList.isPlayer(playerName) == null) {
+            Player player = new Player(playerName);
+            playerList.addPlayer(player);
+        } else {
+            error.writeln(Error.PLAYER_ALREADY_EXISTS);
         }
-        return adminInList.getEmail().equals(admin.getEmail()) &&
-                adminInList.getPassword().equals(admin.getPassword());
     }
 
+    public void clearMatchmake(){
+        this.matchList.clearmatchList();
+    }
 
+    public void deletePlayer(String playerName){
+        Player player = this.playerList.isPlayer(playerName);
+        if(player != null) {
+            this.playerList.removePlayer(player);
+        } else {
+            error.writeln(Error.PLAYER_NOT_FOUND);
+        }
+    }
 }

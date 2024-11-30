@@ -1,19 +1,19 @@
 package upm.controller.commands;
 import upm.model.Player;
-import upm.controller.PlayerController;
+import upm.list.PlayerList;
 import upm.model.User;
 
 import java.lang.String;
 public class ShowCommand extends Command {
-    private PlayerController playerController;
+    private PlayerList playerList;
 
-    public ShowCommand(PlayerController playerController){
+    public ShowCommand(PlayerList playerList){
         super("show");
-        this.playerController = playerController;
+        this.playerList = playerList;
     }
-    public void execute(String[] input, User user) {
+    public void execute(String[] input) {
         assert input.length == 1;
-        for (Player player : this.playerController.getPlayerList()) {
+        for (Player player : this.playerList.getPlayerList()) {
             System.out.println("Name: " + player.getName() + ", Score: " + player.getScore());
         }
     }

@@ -1,18 +1,18 @@
-package upm.controller;
+package upm.list;
 
-import upm.Match;
+import upm.model.Match;
 import upm.model.Player;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-public class MatchController {
+public class MatchList {
 
 
     private ArrayList<Match> matchList; //como atributo lista de matches
-    private PlayerController playerController;
+    private PlayerList playerList;
 
-    public MatchController(PlayerController playerController) {
-        this.playerController = playerController;
+    public MatchList(PlayerList playerList) {
+        this.playerList = playerList;
         this.matchList = new ArrayList<Match>();
     }
     public ArrayList<Match> getMatchList() {
@@ -20,7 +20,7 @@ public class MatchController {
     }
 
     public boolean isPaired(Player player) {
-        assert this.playerController.containsPlayer(player);
+        assert this.playerList.containsPlayer(player);
         if(!this.matchList.isEmpty()){
             int i = 0;
             Player[] arrayPlayers = this.matchList.get(i).getPlayers();

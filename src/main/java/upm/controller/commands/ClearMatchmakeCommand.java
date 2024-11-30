@@ -1,16 +1,19 @@
 package upm.controller.commands;
 
-import upm.controller.MatchController;
+import upm.controller.AdminController;
+import upm.list.MatchList;
 
 public class ClearMatchmakeCommand extends Command {
-    private MatchController matchController;
+    private MatchList matchList;
+    private AdminController adminController;
 
-    public ClearMatchmakeCommand(MatchController matchController){
+    public ClearMatchmakeCommand(AdminController adminController){
         super("clear_matchmake");
-        this.matchController = matchController;
+        this.adminController = adminController;
     }
     public void execute(String[] input){
         assert input.length == 1;
-        this.matchController.clearmatchList();
+        this.adminController.clearMatchmake();
+
     }
 }

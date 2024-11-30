@@ -1,33 +1,22 @@
 package upm.controller.commands;
 
-import upm.Error;
-import upm.model.Player;
+import upm.controller.AdminController;
 import upm.controller.PlayerController;
-import upm.model.User;
-import upm.view.ErrorView;
-
-import java.util.List;
 
 public class CreateCommand extends Command {
+    private AdminController adminController;
 
-    private PlayerController playerController;
-    private ErrorView error;
 
-    public CreateCommand(PlayerController playerController) {
+    public CreateCommand(AdminController adminController) {
         super("create");
-        this.playerController = playerController;
+        this.adminController = adminController;
     }
 
-    public void execute(String[] input, User user) {
+    public void execute(String[] input) {
 
         assert input.length == 2;
         String playerName = input[1];
-        if (this.playerController.isPlayer(playerName) == null) {
-            Player player = new Player(playerName);
-            playerController.addPlayer(player);
-        } else {
-            error.writeln(Error.PLAYER_ALREADY_EXISTS);
-        }
+        this.adminController.createPlayer(playerName);
     }
 
 }

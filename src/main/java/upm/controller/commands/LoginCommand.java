@@ -1,23 +1,21 @@
 package upm.controller.commands;
 import upm.LoginVisitor;
-import upm.controller.AdminController;
-import upm.controller.PlayerController;
-import upm.model.Admin;
+import upm.list.AdminList;
+import upm.list.PlayerList;
 import upm.model.User;
 
-import java.util.List;
-
 public class LoginCommand extends Command{
-    private AdminController adminController;
-    private PlayerController playerController;
-    public LoginCommand(AdminController adminController, PlayerController playerController) {
+    private AdminList adminList;
+    private PlayerList playerList;
+    public LoginCommand(AdminList adminList, PlayerList playerList) {
         super("login");
-        this.adminController = adminController;
-        this.playerController = playerController;
+        this.adminList = adminList;
+        this.playerList = playerList;
     }
 
-    public void execute(String[] input, User user) {
+    public void execute(String[] input) {
         assert input.length == 3;
+        User user = null; //NullPointerException ¿cómo solucionar?
         LoginVisitor visitor = new LoginVisitor();
         user.accept(visitor);
         //como sé al aceptar al visitor si está en mi lista de players o de admins

@@ -1,4 +1,4 @@
-package upm;
+package upm.model;
 
 import upm.model.Player;
 

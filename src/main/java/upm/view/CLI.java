@@ -1,10 +1,12 @@
 package upm.view;
 
+import upm.list.AdminList;
 import upm.controller.AdminController;
+import upm.controller.PlayerController;
 import upm.controller.commands.*;
 import upm.controller.ControllerCommand;
-import upm.controller.MatchController;
-import upm.controller.PlayerController;
+import upm.list.MatchList;
+import upm.list.PlayerList;
 import upm.controller.commands.LoginCommand;
 
 import java.util.ArrayList;
@@ -15,21 +17,23 @@ public class CLI {
     private final ControllerCommand controllerCommand;
 
     public CLI() {
-        PlayerController playerController = new PlayerController(new ArrayList<>());
-        MatchController matchController = new MatchController(playerController);
-        AdminController adminController = new AdminController();
+        PlayerList playerList = new PlayerList(new ArrayList<>());
+        MatchList matchList = new MatchList(playerList);
+        AdminList adminList = new AdminList();
+        AdminController adminController = new AdminController(playerList, matchList);
+        PlayerController playerController = new PlayerController(playerList);
 
         List<Command> commandList = new ArrayList<>();
         commandList.add(new CreateCommand(playerController));
-        commandList.add(new RemoveCommand(playerController));
-        commandList.add(new RankCommand(playerController));
-        commandList.add(new ScoreCommand(playerController));
-        commandList.add(new ShowCommand(playerController));
-        commandList.add(new MatchmakeCommand(matchController, playerController));
-        commandList.add(new RandomMatchmakeCommand(playerController, matchController));
-        commandList.add(new ShowMatchmakeCommand(matchController));
-        commandList.add(new ClearMatchmakeCommand(matchController));
-        commandList.add(new LoginCommand(adminController, playerController));
+        commandList.add(new RemoveCommand(playerList));
+        commandList.add(new RankCommand(playerList));
+        commandList.add(new ScoreCommand(playerList));
+        commandList.add(new ShowCommand(playerList));
+        commandList.add(new MatchmakeCommand(matchList, playerList));
+        commandList.add(new RandomMatchmakeCommand(playerList, matchList));
+        commandList.add(new ShowMatchmakeCommand(matchList));
+        commandList.add(new ClearMatchmakeCommand(matchList));
+        commandList.add(new LoginCommand(adminList, playerList));
         commandList.add(new LogoutCommand());
         commandList.add(new ExitCommand());
 

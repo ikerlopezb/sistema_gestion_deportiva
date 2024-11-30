@@ -1,7 +1,6 @@
 package upm.model;
 
 import upm.VisitorUser;
-import upm.controller.AdminController;
 
 import java.util.ArrayList;
 
