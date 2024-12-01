@@ -2,7 +2,7 @@ package upm.model;
 
 import java.util.ArrayList;
 
-public class Team {
+public class Team implements Participant{
     private ArrayList<Player> team;
     private String teamName;
 
@@ -10,4 +10,10 @@ public class Team {
         this.team = team;
         this.teamName = teamName;
     }
+
+    public String getName() {
+        return this.teamName;
+    }
+
+    
 }

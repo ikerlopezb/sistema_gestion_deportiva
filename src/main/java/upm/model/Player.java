@@ -6,7 +6,7 @@ import upm.model.User;
 
 import java.util.ArrayList;
 
-public class Player extends User   {
+public class Player extends User implements Participant   {
     private final String forename;
     private final String surname;
     private final String DNI;
