@@ -1,22 +1,21 @@
 package upm.controller.commands;
 
-import upm.controller.AdminController;
-import upm.controller.PlayerController;
+import upm.controller.Controller;
 
 public class CreateCommand extends Command {
-    private AdminController adminController;
+    private Controller controller;
 
 
-    public CreateCommand(AdminController adminController) {
+    public CreateCommand(Controller controller) {
         super("create");
-        this.adminController = adminController;
+        this.controller = controller;
     }
 
     public void execute(String[] input) {
 
         assert input.length == 2;
         String playerName = input[1];
-        this.adminController.createPlayer(playerName);
+        this.controller.createPlayer(playerName);
     }
 
 }

@@ -1,5 +1,6 @@
 package upm;
 
+import upm.model.Participant;
 import upm.model.Player;
 
 import java.util.Date;
@@ -12,7 +13,7 @@ public class Tournament {
     private Date startDate;
     private Date endDate;
     private Category rankingCategory;
-    private ArrayList<Player> participants;
+    private ArrayList<Participant> participants;
 
 
     public Tournament(String tournamentName, Date startDate, Date endDate, Category rankingCategory) {

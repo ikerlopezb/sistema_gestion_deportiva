@@ -1,7 +1,5 @@
 package upm.controller.commands;
 
-import upm.controller.TeamController;
-
 public class TeamRemoveCommand extends Command{
     TeamController teamController;
 

@@ -1,7 +1,5 @@
 package upm.controller.commands;
 
-import upm.controller.TeamController;
-
 public class TeamCreateCommand extends Command {
     TeamController teamController;
 

@@ -1,25 +1,22 @@
 package upm.controller.commands;
 
-import upm.Error;
-import upm.controller.AdminController;
+import upm.controller.Controller;
 import upm.view.ErrorView;
-import upm.model.Player;
 import upm.list.PlayerList;
-import upm.model.User;
 
 public class RemoveCommand extends Command {
     private PlayerList playerList;
-    private AdminController adminController;
+    private Controller controller;
     private ErrorView error;
 
-    public RemoveCommand(AdminController adminController) {
+    public RemoveCommand(Controller controller) {
         super("remove");
-        this.adminController = adminController;
+        this.controller = controller;
     }
 
     public void execute(String[] input) {
         assert input.length == 2;
         String playerName = input[1];
-        this.adminController.deletePlayer(playerName);
+        this.controller.deletePlayer(playerName);
     }
 }
