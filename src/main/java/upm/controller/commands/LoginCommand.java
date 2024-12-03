@@ -1,19 +1,18 @@
 package upm.controller.commands;
+import upm.controller.Controller;
 import upm.list.AdminList;
 import upm.list.PlayerList;
 import upm.model.User;
 import upm.view.CLI;
 
 public class LoginCommand extends Command{
-    private AdminList adminList;
-    private PlayerList playerList;
+    private Controller controller;
     private boolean logged;
 
 
     public LoginCommand(Controller controller) {
         super("login");
-        this.adminList = adminList;
-        this.playerList = playerList;
+        this.controller = controller;
         this.logged = false;
     }
 

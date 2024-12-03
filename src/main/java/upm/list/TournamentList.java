@@ -1,6 +1,7 @@
 package upm.list;
 
 import upm.Tournament;
+import upm.model.Team;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ public class TournamentList {
     public List<Tournament> getTournamentList() {
         return tournamentList;
     }
+
+
 }

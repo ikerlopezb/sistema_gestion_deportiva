@@ -1,13 +1,16 @@
 package upm.controller.commands;
 
-public class TeamAddCommand extends Command{
-    TeamController teamController;
+import upm.controller.Controller;
 
-    public TeamAddCommand(TeamController teamController) {
+public class TeamAddCommand extends Command{
+    private Controller controller;
+
+    public TeamAddCommand(Controller controller) {
         super("team-add");
-        this.teamController = teamController;
+        this.controller = controller;
     }
     public void execute(String[] input) {
-
+        assert input.length == 3;
+        this.controller.teamAdd(input[1], input[2]);
     }
 }

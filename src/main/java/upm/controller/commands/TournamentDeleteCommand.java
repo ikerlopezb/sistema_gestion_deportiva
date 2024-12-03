@@ -1,8 +1,13 @@
 package upm.controller.commands;
 
+import upm.controller.Controller;
+
 public class TournamentDeleteCommand extends Command{
-    public TournamentDeleteCommand() {
+
+    private Controller controller;
+    public TournamentDeleteCommand(Controller controller) {
         super("tournament-delete");
+        this.controller = controller;
     }
 
     public void execute(String[] input) {

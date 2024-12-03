@@ -1,13 +1,16 @@
 package upm.controller.commands;
 
-public class TeamDeleteCommand extends Command{
-    TeamController teamController;
+import upm.controller.Controller;
 
-    public TeamDeleteCommand(TeamController teamController) {
+public class TeamDeleteCommand extends Command{
+    private Controller controller;
+
+    public TeamDeleteCommand(Controller controller) {
         super("team-delete");
-        this.teamController = teamController;
+        this.controller = controller;
     }
     public void execute(String[] input) {
-
+        assert input.length == 2;
+        this.controller.teamDelete(input[1]);
     }
 }

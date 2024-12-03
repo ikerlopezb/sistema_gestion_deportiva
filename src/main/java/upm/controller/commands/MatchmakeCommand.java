@@ -7,17 +7,16 @@ import upm.model.Match;
 import upm.Error;
 import upm.model.User;
 import upm.view.ErrorView;
+import upm.controller.Controller;
 
 
 public class MatchmakeCommand extends Command {
-    private MatchList matchList;
-    private PlayerList playerList;
     private ErrorView error;
+    private Controller controller;
 
-    public MatchmakeCommand(MatchList matchList, PlayerList playerList) {
+    public MatchmakeCommand(Controller controller) {
         super("matchmake");
-        this.playerList = playerList;
-        this.matchList = matchList;
+        this.controller = controller;
     }
 
     public void execute(String[] input, User user) {

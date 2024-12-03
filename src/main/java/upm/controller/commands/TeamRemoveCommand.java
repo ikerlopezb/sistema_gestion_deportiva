@@ -1,11 +1,13 @@
 package upm.controller.commands;
 
-public class TeamRemoveCommand extends Command{
-    TeamController teamController;
+import upm.controller.Controller;
 
-    public TeamRemoveCommand(TeamController teamController) {
+public class TeamRemoveCommand extends Command{
+    private Controller controller;
+
+    public TeamRemoveCommand(Controller controller) {
         super("team-remove");
-        this.teamController = teamController;
+        this.controller = controller;
     }
     public void execute(String[] input) {
 

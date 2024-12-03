@@ -6,11 +6,11 @@ import java.util.List;
 
 public class LogoutCommand extends Command{
 
-    public LogoutCommand(String preffix){
+    public LogoutCommand(){
         super("logout");
     }
 
-    public void execute(String[] input, User user){
+    public void execute(String[] input){
 
     }
 }

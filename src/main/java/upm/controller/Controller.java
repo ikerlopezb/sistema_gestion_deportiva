@@ -4,7 +4,10 @@ import upm.Error;
 import upm.Tournament;
 import upm.list.*;
 import upm.model.Player;
+import upm.model.Team;
 import upm.view.ErrorView;
+
+import java.util.ArrayList;
 
 public class Controller {
 
@@ -44,4 +47,32 @@ public class Controller {
             error.writeln(Error.PLAYER_NOT_FOUND);
         }
     }
+
+    public void teamCreate(String teamName) {
+        assert !this.teamList.existTeam(teamName);
+        Team team = new Team(teamName);
+        this.teamList.add(team);
+    }
+
+    public void teamAdd(String teamName, String playerName){
+        Player player = this.playerList.isPlayer(playerName);
+        if(this.teamList.existTeam(teamName) && player != null){
+            Team team = this.teamList.isTeam(teamName);
+            team.add(player);
+        }
+    }
+
+    public void teamDelete(String teamName) {
+        assert this.teamList.existTeam(teamName);
+        Team team = this.teamList.isTeam(teamName);
+        //isCompeting hay que usar pero falta por pensar otro método
+    }
+
+
+
+
+    public void teamRemove(String teamName, String playerName) {
+
+    }
+
 }

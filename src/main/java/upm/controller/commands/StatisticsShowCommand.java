@@ -1,11 +1,13 @@
 package upm.controller.commands;
 
-public class StatisticsShowCommand extends Command{
-    PlayerController playerController;
+import upm.controller.Controller;
 
-    public StatisticsShowCommand(PlayerController playerController) {
+public class StatisticsShowCommand extends Command{
+    private Controller controller;
+
+    public StatisticsShowCommand(Controller controller) {
         super("statistics-show");
-        this.playerController = playerController;
+        this.controller = controller;
     }
     public void execute(String[] input) {
 
