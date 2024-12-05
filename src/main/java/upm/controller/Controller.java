@@ -1,13 +1,14 @@
 package upm.controller;
 
+import upm.Category;
 import upm.Error;
 import upm.Tournament;
 import upm.list.*;
 import upm.model.Player;
 import upm.model.Team;
 import upm.view.ErrorView;
-
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Controller {
 
@@ -26,9 +27,9 @@ public class Controller {
         this.adminList = adminList;
         this.tournamentlist = tournamentList;
     }
-    public void createPlayer(String playerName){
-        if (this.playerList.isPlayer(playerName) == null) {
-            Player player = new Player(playerName);
+    public void createPlayer(String DNI){
+        if (this.playerList.isPlayer(DNI) == null) {
+            Player player = new Player(DNI);
             playerList.addPlayer(player);
         } else {
             error.writeln(Error.PLAYER_ALREADY_EXISTS);
@@ -39,8 +40,8 @@ public class Controller {
         this.matchList.clearmatchList();
     }
 
-    public void deletePlayer(String playerName){
-        Player player = this.playerList.isPlayer(playerName);
+    public void deletePlayer(String DNI){
+        Player player = this.playerList.isPlayer(DNI);
         if(player != null) {
             this.playerList.removePlayer(player);
         } else {
@@ -54,8 +55,8 @@ public class Controller {
         this.teamList.add(team);
     }
 
-    public void teamAdd(String teamName, String playerName){
-        Player player = this.playerList.isPlayer(playerName);
+    public void teamAdd(String teamName, String DNI){
+        Player player = this.playerList.isPlayer(DNI);
         if(this.teamList.existTeam(teamName) && player != null){
             Team team = this.teamList.isTeam(teamName);
             team.add(player);
@@ -65,14 +66,43 @@ public class Controller {
     public void teamDelete(String teamName) {
         assert this.teamList.existTeam(teamName);
         Team team = this.teamList.isTeam(teamName);
-        //isCompeting hay que usar pero falta por pensar otro método
+        if(!this.tournamentlist.isCompeting(team)){
+            Tournament tournament = this.tournamentlist.getTournamentTeam(team);
+            tournament.remove(team);
+        }
+    }
+    public void teamRemove(String teamName, String DNI) {
+        Player player = this.playerList.isPlayer(DNI);
+        if(this.teamList.existTeam(teamName) && player != null){
+            Team team = this.teamList.isTeam(teamName);
+            team.remove(player);
+        }
     }
 
-
-
-
-    public void teamRemove(String teamName, String playerName) {
-
+    public void tournamentAdd(String participant, String tournamentName) {
+        if((this.teamList.existTeam(participant) || this.playerList.isPlayer(participant) != null) &&
+                (this.tournamentlist.isTournament(tournamentName) != null)){
+            Tournament tournament = this.tournamentlist.isTournament(tournamentName);
+            this.tournamentlist.add(tournament);
+        }
     }
+
+    public void tournamentCreate(String tournamentName, String startDate,
+                                 String endDate, String rankingCategory) {
+        assert this.tournamentlist.isTournament(tournamentName) == null;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate start = LocalDate.parse(startDate, formatter);
+        LocalDate end = LocalDate.parse(endDate, formatter);
+        Category category = Category.valueOf(rankingCategory);
+        Tournament tournament = new Tournament(tournamentName, start, end, category);
+        this.tournamentlist.add(tournament);
+    }
+
+    public void tournamentDelete(String tournamentName) {
+        assert this.tournamentlist.isTournament(tournamentName) != null;
+        Tournament tournament = this.tournamentlist.isTournament(tournamentName)
+        this.tournamentlist.remove(tournament);
+    }
+
 
 }

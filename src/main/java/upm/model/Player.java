@@ -22,6 +22,9 @@ public class Player extends User implements Participant   {
         this.statistics = new ArrayList<>();
     }
 
+    public String getDNI(){
+        return this.DNI;
+    }
     public String getName() {
         return this.forename;
     }
@@ -41,5 +44,4 @@ public class Player extends User implements Participant   {
     public void accept(VisitorUser visitor) {
         visitor.visit(this);
     }
-
 }

@@ -16,16 +16,16 @@ public class PlayerList {
         return this.playerList;
     }
 
-    public Player isPlayer(String playerName) {
+    public Player isPlayer(String DNI) {
         if (!this.playerList.isEmpty()) {
             Iterator<Player> iterator = this.playerList.iterator();
             Player player = iterator.next();
 
-            while (iterator.hasNext() && !(player.getName().equals(playerName))) {
+            while (iterator.hasNext() && !(player.getDNI().equals(DNI))) {
                 player = iterator.next();
             }
 
-            return (player.getName().equals(playerName)) ? player: null;
+            return (player.getDNI().equals(DNI)) ? player: null;
         } else {
             return null;
         }

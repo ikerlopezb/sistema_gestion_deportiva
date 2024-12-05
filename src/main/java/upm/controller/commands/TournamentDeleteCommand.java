@@ -2,6 +2,8 @@ package upm.controller.commands;
 
 import upm.controller.Controller;
 
+import java.util.Arrays;
+
 public class TournamentDeleteCommand extends Command{
 
     private Controller controller;
@@ -11,7 +13,8 @@ public class TournamentDeleteCommand extends Command{
     }
 
     public void execute(String[] input) {
-
+        assert input.length == 2;
+        this.controller.tournamentDelete(input[1]);
     }
 
 

@@ -10,7 +10,8 @@ public class TournamentAddCommand extends Command{
     }
 
     public void execute(String[] input) {
-
+        assert input.length == 3;
+        this.controller.tournamentAdd(input[1], input[2]);
     }
 
 }

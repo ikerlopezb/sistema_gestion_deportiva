@@ -10,6 +10,7 @@ public class TeamRemoveCommand extends Command{
         this.controller = controller;
     }
     public void execute(String[] input) {
-
+        assert input.length == 3;
+        this.controller.teamRemove(input[1], input[2]);
     }
 }

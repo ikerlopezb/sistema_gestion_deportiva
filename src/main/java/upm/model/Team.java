@@ -18,6 +18,8 @@ public class Team implements Participant{
         this.team.add(player);
     }
 
-
+    public void remove(Player player) {
+        this.remove(player);
+    }
     
 }
