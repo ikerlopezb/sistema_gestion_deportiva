@@ -1,7 +1,6 @@
 package upm.model;
 
 import upm.Category;
-import upm.Statistic;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,7 +14,7 @@ public class Team implements Participant{
         this.teamName = teamName;
     }
 
-    public String getName() {
+    public String getKey() {
         return this.teamName;
     }
     public void add(Player player){
@@ -30,6 +29,9 @@ public class Team implements Participant{
             totalRanking += player.getRank(category);
         }
         return totalRanking / this.team.size();
+    }
+    public boolean isPlayerInTeam(Player player){
+        return this.team.contains(player);
     }
     
 }

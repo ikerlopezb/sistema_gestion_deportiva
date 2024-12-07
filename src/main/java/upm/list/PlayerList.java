@@ -1,6 +1,5 @@
 package upm.list;
 
-import upm.model.Admin;
 import upm.model.Player;
 
 import java.util.ArrayList;
@@ -22,11 +21,11 @@ public class PlayerList {
             Iterator<Player> iterator = this.playerList.iterator();
             Player player = iterator.next();
 
-            while (iterator.hasNext() && !(player.getDNI().equals(DNI))) {
+            while (iterator.hasNext() && !(player.getKey().equals(DNI))) {
                 player = iterator.next();
             }
 
-            return (player.getDNI().equals(DNI)) ? player: null;
+            return (player.getKey().equals(DNI)) ? player: null;
         } else {
             return null;
         }

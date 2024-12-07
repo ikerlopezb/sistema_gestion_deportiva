@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import upm.model.Player;
 import upm.model.Team;
 
 
@@ -38,17 +39,16 @@ public class Tournament {
     public String getTournamentName() {
         return tournamentName;
     }
-    public boolean isCompeting(Team team) {
+    public boolean currentlyCompeting(Participant participant) {
         boolean competing = false;
-
         Iterator<Participant> iterator = participants.iterator();
-        Participant participant = iterator.next();
+        Participant participantIterator = iterator.next();
 
-        while (!(participant.getName().equals(team.getName())) && iterator.hasNext()) {
-            participant = iterator.next();
+        while (!(participantIterator.getKey().equals(participant.getKey())) && iterator.hasNext()) {
+            participantIterator = iterator.next();
         }
-        if (participant.getName().equals(team.getName())) {
-            LocalDate actual = LocalDate.now(); // Obtener la fecha actual
+        if (participantIterator.getKey().equals(participant.getKey())) {
+            LocalDate actual = LocalDate.now();
             competing = startDate.isBefore(actual) || startDate.isEqual(actual);
         }
         return competing;
@@ -62,7 +62,7 @@ public class Tournament {
     public void showShuffleParticipants() {
         this.shuffle();
         for(Participant participant : this.participants) {
-            System.out.println(participant.getName());
+            System.out.println(participant.getKey());
         }
     }
 
@@ -76,8 +76,18 @@ public class Tournament {
 
     public void showRankingParticipants() {
         for(Participant participant : this.participants) {
-            System.out.println(participant.getName() + participant.getRank(this.category));
+            System.out.println(participant.getKey() + participant.getRank(this.category));
         }
+    }
+    public boolean isPlayerInTournament(Player player){
+        Iterator<Participant> iterator = this.participants.iterator();
+        Participant participant = iterator.next();
+        Team team = 
+
+        while(!participant && iterator.hasNext()){
+            participant = iterator.next();
+        }
+        return ;
     }
 
 

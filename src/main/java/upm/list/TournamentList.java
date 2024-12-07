@@ -1,8 +1,10 @@
 package upm.list;
 
 import upm.Tournament;
+import upm.model.Participant;
+import upm.model.Player;
 import upm.model.Team;
-import java.time.LocalDate;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,13 +24,13 @@ public class TournamentList {
         return tournament == null;
     }
 
-    public Tournament getTournamentTeam(Team team){
-        return iterateTournamentList(team);
+    public Tournament getTournamentParticipant(Participant participant){
+        return iterateTournamentList(participant);
     }
-    private Tournament iterateTournamentList(Team team){
+    private Tournament iterateTournamentList(Participant participant){
         Iterator<Tournament> iterator = this.tournamentList.iterator();
         Tournament tournament = iterator.next();
-        while(tournament.isCompeting(team) && iterator.hasNext()) {
+        while(tournament.currentlyCompeting(participant) && iterator.hasNext()) {
             tournament = iterator.next();
         }
         return tournament;
@@ -38,10 +40,11 @@ public class TournamentList {
         Iterator<Tournament> iterator = this.tournamentList.iterator();
         Tournament tournament = iterator.next();
             while(tournament.getTournamentName().equals(tournamentName) && iterator.hasNext()) {
-            tournament = iterator.next();
-        }
+                tournament = iterator.next();
+            }
         return tournament;
     }
+
 
     public Tournament isTournament(String tournamentName) {
         return iterateTournamentList(tournamentName);

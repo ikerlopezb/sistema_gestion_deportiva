@@ -11,8 +11,6 @@ import upm.model.User;
 import upm.view.ErrorView;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Controller {
 
@@ -71,7 +69,7 @@ public class Controller {
         assert this.teamList.existTeam(teamName);
         Team team = this.teamList.isTeam(teamName);
         if(!this.tournamentlist.isCompeting(team)){
-            Tournament tournament = this.tournamentlist.getTournamentTeam(team);
+            Tournament tournament = this.tournamentlist.getTournamentParticipant(team);
             tournament.remove(team);
         }
     }
@@ -138,8 +136,10 @@ public class Controller {
         }
         return user;
     }
-    public void tournamentRemove(){
-        User user;
+    public void tournamentRemove(User user){
+        assert user != null;
+
+
 
     }
 

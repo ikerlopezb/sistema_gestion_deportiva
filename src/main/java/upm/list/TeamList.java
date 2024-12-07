@@ -3,7 +3,6 @@ package upm.list;
 import upm.model.Player;
 import upm.model.Team;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,10 +15,10 @@ public class TeamList {
     public boolean existTeam(String teamName){
         Iterator<Team> iterator = teamList.iterator();
         Team team = iterator.next();
-        while(!team.getName().equals(teamName) && iterator.hasNext()){
+        while(!team.getKey().equals(teamName) && iterator.hasNext()){
             team = iterator.next();
         }
-        return team.getName().equals(teamName);
+        return team.getKey().equals(teamName);
     }
 
     public void add(Team team) {
@@ -31,12 +30,22 @@ public class TeamList {
             Iterator<Team> iterator = this.teamList.iterator();
             Team team = iterator.next();
 
-            while (iterator.hasNext() && !(team.getName().equals(teamName))) {
+            while (iterator.hasNext() && !(team.getKey().equals(teamName))) {
                 team = iterator.next();
             }
-            return (team.getName().equals(teamName)) ? team: null;
+            return (team.getKey().equals(teamName)) ? team: null;
         } else {
             return null;
         }
+    }
+
+    public Team whichTeam(Player player){
+        Iterator<Team> iterator = this.teamList.iterator();
+        Team team = iterator.next();
+
+        while(!team.isPlayerInTeam(player) && iterator.hasNext()){
+            team = iterator.next();
+        }
+        return team;
     }
 }

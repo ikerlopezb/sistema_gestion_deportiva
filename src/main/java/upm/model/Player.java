@@ -3,7 +3,6 @@ package upm.model;
 import upm.Category;
 import upm.Statistic;
 import upm.VisitorUser;
-import upm.model.User;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -26,7 +25,7 @@ public class Player extends User implements Participant   {
         return statistics;
     }
 
-    public String getDNI(){
+    public String getKey(){
         return this.DNI;
     }
     public String getName() {
