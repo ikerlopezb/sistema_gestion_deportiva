@@ -1,5 +1,6 @@
 package upm.list;
 
+import upm.model.Admin;
 import upm.model.Player;
 
 import java.util.ArrayList;
@@ -29,6 +30,17 @@ public class PlayerList {
         } else {
             return null;
         }
+    }
+    public Player isPlayer(String email, String password){
+        Iterator<Player> iterator = this.playerList.iterator();
+        Player playerInList =  iterator.next();
+
+        while (!playerInList.getEmail().equals(email) &&
+                !playerInList.getPassword().equals(password) && iterator.hasNext()) {
+            playerInList = iterator.next();
+        }
+        return (playerInList.getEmail().equals(email) &&
+                playerInList.getPassword().equals(password)) ? playerInList : null;
     }
 
     public void addPlayer(Player player) {

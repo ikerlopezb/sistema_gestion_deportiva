@@ -18,7 +18,8 @@ public abstract class User {
         return password;
     }
 
-    public abstract String getRole();
     public abstract void accept(VisitorUser visitor);
+    public abstract void tournamentList(VisitorUser visitor);
+
 
 }

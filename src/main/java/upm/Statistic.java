@@ -4,12 +4,16 @@ import java.util.Date;
 public class Statistic {
     private Category category;
     private double value;
-    private Date tournamentDate;
 
-    public Statistic(Category category, double value, Date tournamentDate) {
+    public Statistic(Category category, double value) {
         this.category = category;
         this.value = value;
-        this.tournamentDate = tournamentDate;
+    }
+    public Category getCategory() {
+        return category;
     }
 
+    public double getValue() {
+        return value;
+    }
 }

@@ -81,10 +81,19 @@ public class CLI implements VisitorUser {
         enabledCommands.add(new LogoutCommand());
         enabledCommands.add(new TournamentListCommand(controller));
     }
-    //Antes de meter enabledCommands eliminar la lista
-    //Hacer un package Utils para meter toda la mierda (listas, Category, Error...)
+
+    public void tournamentList(Player player){
+        controller.showTournamentList();
+    }
+    public void tournamentList(Admin admin){
+        controller.removeFinishedTournaments();
+        controller.showTournamentList();
+    }
 
     public static void main(String[] args) {
         new CLI().execute();
     }
+
+    //Antes de meter enabledCommands eliminar la lista
+    //Hacer un package Utils para meter toda la mierda (listas, Category, Error...)
 }

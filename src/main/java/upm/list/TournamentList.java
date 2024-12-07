@@ -1,10 +1,8 @@
 package upm.list;
 
 import upm.Tournament;
-import upm.model.Participant;
 import upm.model.Team;
-
-
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 

@@ -4,11 +4,15 @@ import upm.Category;
 import upm.Error;
 import upm.Tournament;
 import upm.list.*;
+import upm.model.Admin;
 import upm.model.Player;
 import upm.model.Team;
+import upm.model.User;
 import upm.view.ErrorView;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Controller {
 
@@ -89,7 +93,9 @@ public class Controller {
 
     public void tournamentCreate(String tournamentName, String startDate,
                                  String endDate, String rankingCategory) {
+
         assert this.tournamentlist.isTournament(tournamentName) == null;
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate start = LocalDate.parse(startDate, formatter);
         LocalDate end = LocalDate.parse(endDate, formatter);
@@ -100,8 +106,41 @@ public class Controller {
 
     public void tournamentDelete(String tournamentName) {
         assert this.tournamentlist.isTournament(tournamentName) != null;
-        Tournament tournament = this.tournamentlist.isTournament(tournamentName)
+        Tournament tournament = this.tournamentlist.isTournament(tournamentName);
         this.tournamentlist.remove(tournament);
+    }
+
+    public void showShuffleTournamentList(){
+        for(Tournament tournament : this.tournamentlist.getTournamentList()) {
+            System.out.println(tournament.getTournamentName());
+            tournament.showShuffleParticipants();
+        }
+    }
+
+    public void showTournamentList(){
+        for(Tournament tournament : this.tournamentlist.getTournamentList()) {
+            System.out.println(tournament.getTournamentName());
+            tournament.showRankingParticipants();
+        }
+    }
+    public void removeFinishedTournaments(){
+        for(Tournament tournament : this.tournamentlist.getTournamentList()){
+            if(tournament.getEndDate().isBefore(LocalDate.now())){
+                this.tournamentlist.remove(tournament);
+            }
+        }
+    }
+    public User isUser(String email, String password){
+        User user = null;
+        Admin admin = this.adminList.isAdmin(email, password);
+        if(admin == null){
+            user = this.playerList.isPlayer(email, password);
+        }
+        return user;
+    }
+    public void tournamentRemove(){
+        User user;
+
     }
 
 

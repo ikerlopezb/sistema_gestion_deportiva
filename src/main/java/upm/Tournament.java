@@ -1,12 +1,9 @@
 package upm;
 
 import upm.model.Participant;
-import upm.model.Player;
 
-import java.util.Date;
-import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -18,16 +15,24 @@ public class Tournament {
     private String tournamentName;
     private LocalDate startDate;
     private LocalDate endDate;
-    private Category rankingCategory;
+    private Category category;
     private ArrayList<Participant> participants;
 
 
-    public Tournament(String tournamentName, LocalDate startDate,LocalDate endDate, Category rankingCategory) {
+    public Tournament(String tournamentName, LocalDate startDate, LocalDate endDate, Category rankingCategory) {
         this.tournamentName = tournamentName;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.rankingCategory = rankingCategory;
+        this.category = rankingCategory;
         this.participants = new ArrayList<>();
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public ArrayList<Participant> getParticipants() {
+        return participants;
     }
 
     public String getTournamentName() {
@@ -54,8 +59,26 @@ public class Tournament {
         this.remove(team);
     }
 
+    public void showShuffleParticipants() {
+        this.shuffle();
+        for(Participant participant : this.participants) {
+            System.out.println(participant.getName());
+        }
+    }
 
+    public LocalDate getEndDate() {
+        return endDate;
+    }
 
+    private void shuffle() {
+        Collections.shuffle(participants);
+    }
+
+    public void showRankingParticipants() {
+        for(Participant participant : this.participants) {
+            System.out.println(participant.getName() + participant.getRank(this.category));
+        }
+    }
 
 
 

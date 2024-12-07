@@ -2,6 +2,8 @@ package upm.list;
 
 import java.util.ArrayList;
 import upm.model.Admin;
+import upm.model.User;
+
 import java.util.Iterator;
 
 public class AdminList {
@@ -16,17 +18,19 @@ public class AdminList {
         adminList.add(new Admin("andrejesus.cimmino@upm.es", "1234"));
     }
 
-    public boolean isAdmin (String email, String password) {
-        Iterator<Admin> iterator = adminList.iterator();
+    public Admin isAdmin (String email, String password) {
+        Iterator<Admin> iterator = this.adminList.iterator();
         Admin adminInList =  iterator.next();
 
-        while (!adminInList.getEmail().equals(admin.getEmail()) &&
-                !adminInList.getPassword().equals(admin.getPassword()) && iterator.hasNext()) {
+        while (!adminInList.getEmail().equals(email) &&
+                !adminInList.getPassword().equals(password) && iterator.hasNext()) {
             adminInList = iterator.next();
         }
-        return adminInList.getEmail().equals(admin.getEmail()) &&
-                adminInList.getPassword().equals(admin.getPassword());
+        return (adminInList.getEmail().equals(email) &&
+                adminInList.getPassword().equals(password)) ? adminInList : null;
     }
 
-
+    public ArrayList<Admin> getAdminList() {
+        return adminList;
+    }
 }

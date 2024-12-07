@@ -22,4 +22,8 @@ public class Admin extends User {
     public void accept(VisitorUser visitor){
         visitor.visit(this);
     }
+
+    public void tournamentList(VisitorUser visitor) {
+        visitor.tournamentList(this);
+    }
 }
