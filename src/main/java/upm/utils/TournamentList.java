@@ -9,7 +9,7 @@ import java.util.List;
 public class TournamentList {
     private List<Tournament> tournamentList;
 
-    public TournamentList (List<Tournament> tournamentList) {
+    public TournamentList(List<Tournament> tournamentList) {
         this.tournamentList = tournamentList;
     }
 
@@ -22,24 +22,25 @@ public class TournamentList {
         return tournament == null;
     }
 
-    public Tournament getTournamentParticipant(Participant participant){
+    public Tournament getTournamentParticipant(Participant participant) {
         return findCompetingTournament(participant);
     }
-    private Tournament findCompetingTournament(Participant participant){
+
+    private Tournament findCompetingTournament(Participant participant) {
         Iterator<Tournament> iterator = this.tournamentList.iterator();
         Tournament tournament = iterator.next();
-        while(tournament.currentlyCompeting(participant) && iterator.hasNext()) {
+        while (tournament.currentlyCompeting(participant) && iterator.hasNext()) {
             tournament = iterator.next();
         }
         return tournament;
     }
 
-    private Tournament iterateTournamentList(String tournamentName){
+    private Tournament iterateTournamentList(String tournamentName) {
         Iterator<Tournament> iterator = this.tournamentList.iterator();
         Tournament tournament = iterator.next();
-            while(tournament.getTournamentName().equals(tournamentName) && iterator.hasNext()) {
-                tournament = iterator.next();
-            }
+        while (tournament.getTournamentName().equals(tournamentName) && iterator.hasNext()) {
+            tournament = iterator.next();
+        }
         return tournament;
     }
 
@@ -47,10 +48,12 @@ public class TournamentList {
     public Tournament isTournament(String tournamentName) {
         return iterateTournamentList(tournamentName);
     }
+
     public void add(Tournament tournament) {
         this.add(tournament);
     }
-    public void remove(Tournament tournament){
+
+    public void remove(Tournament tournament) {
         this.remove(tournament);
     }
 }

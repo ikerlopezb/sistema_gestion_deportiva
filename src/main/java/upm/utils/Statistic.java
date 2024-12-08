@@ -8,6 +8,7 @@ public class Statistic {
         this.category = category;
         this.value = value;
     }
+
     public Category getCategory() {
         return category;
     }

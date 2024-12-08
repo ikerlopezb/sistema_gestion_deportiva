@@ -17,10 +17,9 @@ public class TournamentListCommand extends Command {
 
     public void execute(String[] input) {
         assert input.length == 1;
-        if(loginCommand.getLogged()){
+        if (loginCommand.getLogged()) {
             user.tournamentList(visitor);
-        }
-        else {
+        } else {
             this.controller.showShuffleTournamentList();
         }
     }

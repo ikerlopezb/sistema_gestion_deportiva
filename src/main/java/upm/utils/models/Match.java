@@ -7,7 +7,7 @@ public class Match {
         this.arrayParticipants = arrayParticipants;
     }
 
-    public int length(){
+    public int length() {
         return this.arrayParticipants.length;
     }
 

@@ -9,6 +9,7 @@ public class TeamDeleteCommand extends Command {
         super("team-delete");
         this.controller = controller;
     }
+
     public void execute(String[] input) {
         assert input.length == 2;
         this.controller.teamDelete(input[1]);

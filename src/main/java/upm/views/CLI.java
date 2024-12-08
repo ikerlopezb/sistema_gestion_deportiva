@@ -57,6 +57,7 @@ public class CLI implements VisitorUser {
         enabledCommands.add(new TournamentRemoveCommand(controller));
         publicCommands();
     }
+
     public void visit(Admin admin) {
         enabledCommands.clear();
         enabledCommands.add(new CreateCommand(controller));
@@ -77,10 +78,11 @@ public class CLI implements VisitorUser {
         enabledCommands.add(new TournamentListCommand(controller));
     }
 
-    public void tournamentList(Player player){
+    public void tournamentList(Player player) {
         controller.showTournamentList();
     }
-    public void tournamentList(Admin admin){
+
+    public void tournamentList(Admin admin) {
         controller.removeFinishedTournaments();
         controller.showTournamentList();
     }

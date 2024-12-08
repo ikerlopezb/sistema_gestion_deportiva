@@ -9,6 +9,7 @@ public class TournamentRemoveCommand extends Command {
 
     private Controller controller;
     private LoginCommand loginCommand;
+
     public TournamentRemoveCommand(Controller controller) {
         super("tournament-remove");
         this.controller = controller;
@@ -16,7 +17,7 @@ public class TournamentRemoveCommand extends Command {
 
     public void execute(String[] input) {
         assert input.length == 1;
-        if(loginCommand.getLogged()){
+        if (loginCommand.getLogged()) {
             User user = this.loginCommand.isLogged();
             Player player = user.asPlayer();
             this.controller.tournamentRemove(player);

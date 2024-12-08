@@ -66,7 +66,7 @@ public class Tournament {
 
     public void showShuffleParticipants() {
         this.shuffle();
-        for(Participant participant : this.participants) {
+        for (Participant participant : this.participants) {
             System.out.println(participant.getKey());
         }
     }
@@ -80,29 +80,28 @@ public class Tournament {
     }
 
     public void showRankingParticipants() {
-        for(Participant participant : this.participants) {
+        for (Participant participant : this.participants) {
             System.out.println(participant.getKey() + participant.getRank(this.category));
         }
     }
-    public void remove(Player player, TeamList teamList){
-        if(player.isInTeam()){
-           Team team = teamList.whichTeam(player);
-           this.remove(team);
-        }
-        else {
+
+    public void remove(Player player, TeamList teamList) {
+        if (player.isInTeam()) {
+            Team team = teamList.whichTeam(player);
+            this.remove(team);
+        } else {
             this.remove(player);
         }
     }
 
-    public void matchmake(Participant participant, Participant participant2){
+    public void matchmake(Participant participant, Participant participant2) {
         if (!(this.matchList.isPaired(participant) &&
-                this.matchList.isPaired(participant2))){
+                this.matchList.isPaired(participant2))) {
 
             Participant[] arrayParticipant = new Participant[]{participant, participant2};
             Match match = new Match(arrayParticipant);
             this.matchList.addMatch(match);
-        }
-        else{
+        } else {
             error.writeln(Error.PLAYER_ALREADY_MATCHED);
         }
     }
@@ -110,7 +109,6 @@ public class Tournament {
     public boolean areBothCompeting(Participant participant1, Participant participant2) {
         return this.currentlyCompeting(participant1) && this.currentlyCompeting(participant2);
     }
-
 
 
     public void randomMatchmake() {
@@ -126,7 +124,6 @@ public class Tournament {
             this.matchList.addMatch(match);
         }
     }
-
 
 
 }

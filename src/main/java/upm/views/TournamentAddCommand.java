@@ -4,6 +4,7 @@ import upm.utils.Controller;
 
 public class TournamentAddCommand extends Command {
     private Controller controller;
+
     public TournamentAddCommand(Controller controller) {
         super("tournament-add");
         this.controller = controller;

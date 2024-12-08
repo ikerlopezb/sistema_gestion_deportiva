@@ -1,6 +1,7 @@
 package upm.views;
 
 import upm.utils.Error;
+
 public class ErrorView {
 
     protected static final String[] MESSAGES = {
@@ -10,8 +11,8 @@ public class ErrorView {
             "Command not found"
     };
 
-    public void writeln(Error error){
-        if(!error.isNull()) {
+    public void writeln(Error error) {
+        if (!error.isNull()) {
             System.out.println(MESSAGES[error.ordinal()]);
         }
     }

@@ -6,6 +6,7 @@ public enum Error {
     PLAYER_ALREADY_MATCHED,
     COMMAND_NOT_FOUND,
     NULL;
+
     public boolean isNull() {
         return this == Error.NULL;
     }

@@ -19,8 +19,7 @@ public class Controller {
     private TournamentList tournamentlist;
     private ErrorView error;
 
-    public Controller(PlayerList playerList, MatchList matchList, TeamList teamList, AdminList adminList,
-                      TournamentList tournamentList) {
+    public Controller(PlayerList playerList, MatchList matchList, TeamList teamList, AdminList adminList, TournamentList tournamentList) {
         this.playerList = playerList;
         this.matchList = matchList;
         this.teamList = teamList;
@@ -47,8 +46,7 @@ public class Controller {
         Team team = this.teamList.whichTeam(player);
         Tournament tournamentTeam = this.tournamentlist.getTournamentParticipant(team);
 
-        if (player != null && !tournamentPlayer.currentlyCompeting(player) &&
-                !tournamentTeam.currentlyCompeting(team)) {
+        if (player != null && !tournamentPlayer.currentlyCompeting(player) && !tournamentTeam.currentlyCompeting(team)) {
             this.playerList.removePlayer(player);
         } else {
             error.writeln(Error.PLAYER_NOT_FOUND);
@@ -88,15 +86,13 @@ public class Controller {
     }
 
     public void tournamentAdd(String participant, String tournamentName) {
-        if ((this.teamList.existTeam(participant) || this.playerList.isPlayer(participant) != null) &&
-                (this.tournamentlist.isTournament(tournamentName) != null)) {
+        if ((this.teamList.existTeam(participant) || this.playerList.isPlayer(participant) != null) && (this.tournamentlist.isTournament(tournamentName) != null)) {
             Tournament tournament = this.tournamentlist.isTournament(tournamentName);
             this.tournamentlist.add(tournament);
         }
     }
 
-    public void tournamentCreate(String tournamentName, String startDate,
-                                 String endDate, String rankingCategory) {
+    public void tournamentCreate(String tournamentName, String startDate, String endDate, String rankingCategory) {
 
         assert this.tournamentlist.isTournament(tournamentName) == null;
 

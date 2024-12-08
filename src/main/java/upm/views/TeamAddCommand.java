@@ -9,6 +9,7 @@ public class TeamAddCommand extends Command {
         super("team-add");
         this.controller = controller;
     }
+
     public void execute(String[] input) {
         assert input.length == 3;
         this.controller.teamAdd(input[1], input[2]);

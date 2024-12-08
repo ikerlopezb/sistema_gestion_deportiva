@@ -13,10 +13,11 @@ public class TeamList {
     public TeamList(List<Team> teamList) {
         this.teamList = teamList;
     }
-    public boolean existTeam(String teamName){
+
+    public boolean existTeam(String teamName) {
         Iterator<Team> iterator = teamList.iterator();
         Team team = iterator.next();
-        while(!team.getKey().equals(teamName) && iterator.hasNext()){
+        while (!team.getKey().equals(teamName) && iterator.hasNext()) {
             team = iterator.next();
         }
         return team.getKey().equals(teamName);
@@ -34,17 +35,17 @@ public class TeamList {
             while (iterator.hasNext() && !(team.getKey().equals(teamName))) {
                 team = iterator.next();
             }
-            return (team.getKey().equals(teamName)) ? team: null;
+            return (team.getKey().equals(teamName)) ? team : null;
         } else {
             return null;
         }
     }
 
-    public Team whichTeam(Player player){
+    public Team whichTeam(Player player) {
         Iterator<Team> iterator = this.teamList.iterator();
         Team team = iterator.next();
 
-        while(!team.isPlayerInTeam(player) && iterator.hasNext()){
+        while (!team.isPlayerInTeam(player) && iterator.hasNext()) {
             team = iterator.next();
         }
         return team;

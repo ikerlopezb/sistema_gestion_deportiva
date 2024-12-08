@@ -17,9 +17,9 @@ public class PlayerList {
         return this.playerList;
     }
 
-    public Player isPlayer(String email, String password){
+    public Player isPlayer(String email, String password) {
         Iterator<Player> iterator = this.playerList.iterator();
-        Player playerInList =  iterator.next();
+        Player playerInList = iterator.next();
 
         while (!playerInList.getEmail().equals(email) &&
                 !playerInList.getPassword().equals(password) && iterator.hasNext()) {
@@ -28,6 +28,7 @@ public class PlayerList {
         return (playerInList.getEmail().equals(email) &&
                 playerInList.getPassword().equals(password)) ? playerInList : null;
     }
+
     public Player isPlayer(String key) {
         Iterator<Player> iterator = this.playerList.iterator();
         Player player = iterator.next();
@@ -56,6 +57,7 @@ public class PlayerList {
     public Player getIndex(int i) {
         return this.playerList.get(i);
     }
+
     public Participant isParticipantPlayer(String key) {
         Iterator<Player> iterator = this.playerList.iterator();
         Player player = iterator.next();
