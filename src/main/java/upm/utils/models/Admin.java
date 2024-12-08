@@ -16,9 +16,6 @@ public class Admin extends User {
         this.registeredTeams = new ArrayList<>();
     }
 
-    public String getRole() {
-        return "Admin";
-    }
 
     public void accept(VisitorUser visitor) {
         visitor.visit(this);

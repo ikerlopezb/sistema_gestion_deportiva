@@ -13,9 +13,6 @@ public class PlayerList {
         this.playerList = playerList;
     }
 
-    public ArrayList<Player> getPlayerList() {
-        return this.playerList;
-    }
 
     public Player isPlayer(String email, String password) {
         Iterator<Player> iterator = this.playerList.iterator();
@@ -42,21 +39,11 @@ public class PlayerList {
         this.playerList.add(player);
     }
 
-    public boolean containsPlayer(Player player) {
-        return this.playerList.contains(player);
-    }
-
-    public int size() {
-        return this.playerList.size();
-    }
 
     public void removePlayer(Player player) {
         this.playerList.remove(player);
     }
 
-    public Player getIndex(int i) {
-        return this.playerList.get(i);
-    }
 
     public Participant isParticipantPlayer(String key) {
         Iterator<Player> iterator = this.playerList.iterator();

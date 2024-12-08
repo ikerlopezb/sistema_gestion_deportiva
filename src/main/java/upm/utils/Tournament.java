@@ -32,9 +32,6 @@ public class Tournament {
         this.matchList = new MatchList();
     }
 
-    public Category getCategory() {
-        return category;
-    }
 
     public ArrayList<Participant> getParticipants() {
         return participants;
