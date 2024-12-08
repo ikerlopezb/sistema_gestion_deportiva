@@ -2,7 +2,6 @@ package upm.controller.commands;
 
 import upm.model.Match;
 import upm.list.MatchList;
-import upm.model.User;
 
 public class ShowMatchmakeCommand extends Command {
     MatchList matchList;
@@ -16,7 +15,7 @@ public class ShowMatchmakeCommand extends Command {
     public void execute(String[] input) {
         assert input.length == 1;
         for(Match match : this.matchList.getMatchList()) {
-            System.out.println(match.getPlayers()[0].getName() + " vs " + match.getPlayers()[1].getName());
+            System.out.println(match.getParticipants()[0].getName() + " vs " + match.getParticipants()[1].getName());
         }
     }
 }

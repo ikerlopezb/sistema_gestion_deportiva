@@ -1,41 +1,37 @@
 package upm.list;
 
 import upm.model.Match;
-import upm.model.Player;
+import upm.model.Participant;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 public class MatchList {
-
-
     private ArrayList<Match> matchList; //como atributo lista de matches
-    private PlayerList playerList;
 
-    public MatchList(PlayerList playerList) {
-        this.playerList = playerList;
+    public MatchList() {
         this.matchList = new ArrayList<Match>();
     }
     public ArrayList<Match> getMatchList() {
         return this.matchList;
     }
 
-    public boolean isPaired(Player player) {
-        assert this.playerList.containsPlayer(player);
+    public boolean isPaired(Participant participant) {
+        //assert this.playerList.containsPlayer(player);
         if(!this.matchList.isEmpty()){
             int i = 0;
-            Player[] arrayPlayers = this.matchList.get(i).getPlayers();
+            Participant[] arrayParticipants = this.matchList.get(i).getParticipants();
 
-            while (i < this.matchList.size() && !(arrayPlayers[0].equals(player) || arrayPlayers[1].equals(player))) {
+            while (i < this.matchList.size() && !(arrayParticipants[0].equals(participant) ||
+                    arrayParticipants[1].equals(participant))) {
                 i++;
-                arrayPlayers = this.matchList.get(i).getPlayers();
+                arrayParticipants = this.matchList.get(i).getParticipants();
             }
-            return arrayPlayers[0].equals(player) || arrayPlayers[1].equals(player);
+            return arrayParticipants[0].equals(participant) || arrayParticipants[1].equals(participant);
         }
         else{
             return false;
         }
     }
-
 
     public void clearmatchList(){
         this.matchList.clear();

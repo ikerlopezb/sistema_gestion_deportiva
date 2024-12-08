@@ -1,20 +1,18 @@
 package upm.model;
 
-import upm.model.Player;
-
 public class Match {
-    private final Player[] arrayPlayers;
+    private final Participant[] arrayParticipants;
 
-    public Match(Player[] arrayPlayers) {
-        this.arrayPlayers = arrayPlayers;
+    public Match(Participant[] arrayParticipants) {
+        this.arrayParticipants = arrayParticipants;
     }
 
     public int length(){
-        return this.arrayPlayers.length;
+        return this.arrayParticipants.length;
     }
 
-    public Player[] getPlayers() {
-        return arrayPlayers;
+    public Participant[] getParticipants() {
+        return arrayParticipants;
     }
 
 }

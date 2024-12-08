@@ -21,5 +21,10 @@ public abstract class User {
     public abstract void accept(VisitorUser visitor);
     public abstract void tournamentList(VisitorUser visitor);
 
+    public Player asPlayer(){
+        return null;
+    }
+
+
 
 }

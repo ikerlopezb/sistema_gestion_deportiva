@@ -12,6 +12,7 @@ public class Player extends User implements Participant   {
     private final String surname;
     private final String DNI;
     private ArrayList<Statistic> statistics;
+    private boolean inTeam;
 
     public Player(String forename, String surname,String DNI, String email, String password) {
         super(email, password);
@@ -19,6 +20,7 @@ public class Player extends User implements Participant   {
         this.surname = surname;
         this.DNI = DNI;
         this.statistics = new ArrayList<>();
+        this.inTeam = false;
     }
 
     public ArrayList<Statistic> getStatistics() {
@@ -36,6 +38,14 @@ public class Player extends User implements Participant   {
         return "Player";
     }
 
+    public boolean isInTeam() {
+        return inTeam;
+    }
+
+    public void setInTeam(boolean inTeam) {
+        this.inTeam = inTeam;
+    }
+
     public void accept(VisitorUser visitor) {
         visitor.visit(this);
     }
@@ -51,4 +61,18 @@ public class Player extends User implements Participant   {
         }
         return statistic.getValue();
     }
+
+    public Player asPlayer() {
+        return this;
+    }
+
+    public Participant isParticipant(String key) {
+        if (this.getKey().equals(key)) {
+            return this;
+        }
+        return null;
+    }
+
+
+
 }

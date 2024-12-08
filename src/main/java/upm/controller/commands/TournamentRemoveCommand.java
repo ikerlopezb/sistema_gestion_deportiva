@@ -1,7 +1,9 @@
 package upm.controller.commands;
 
 import upm.controller.Controller;
+import upm.model.Player;
 import upm.model.User;
+import upm.view.CLI;
 
 
 public class TournamentRemoveCommand extends Command{
@@ -17,7 +19,8 @@ public class TournamentRemoveCommand extends Command{
         assert input.length == 1;
         if(loginCommand.getLogged()){
             User user = this.loginCommand.isLogged();
-            this.controller.tournamentRemove(user);
+            Player player = user.asPlayer();
+            this.controller.tournamentRemove(player);
         }
 
     }

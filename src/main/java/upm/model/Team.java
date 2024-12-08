@@ -33,5 +33,16 @@ public class Team implements Participant{
     public boolean isPlayerInTeam(Player player){
         return this.team.contains(player);
     }
-    
+
+    public Participant isParticipant(String key) {
+        for (Player player : this.team) {
+            if (player.getKey().equals(key)) {
+                return this;
+            }
+        }
+        return null;
+    }
+
+
+
 }

@@ -1,5 +1,8 @@
 package upm;
 
+import upm.list.MatchList;
+import upm.list.TeamList;
+import upm.model.Match;
 import upm.model.Participant;
 
 import java.util.Collections;
@@ -9,7 +12,7 @@ import java.util.Iterator;
 
 import upm.model.Player;
 import upm.model.Team;
-
+import upm.view.ErrorView;
 
 
 public class Tournament {
@@ -18,6 +21,8 @@ public class Tournament {
     private LocalDate endDate;
     private Category category;
     private ArrayList<Participant> participants;
+    private MatchList matchList;
+    private ErrorView error;
 
 
     public Tournament(String tournamentName, LocalDate startDate, LocalDate endDate, Category rankingCategory) {
@@ -26,6 +31,7 @@ public class Tournament {
         this.endDate = endDate;
         this.category = rankingCategory;
         this.participants = new ArrayList<>();
+        this.matchList = new MatchList();
     }
 
     public Category getCategory() {
@@ -55,8 +61,8 @@ public class Tournament {
     }
 
 
-    public void remove(Team team) {
-        this.remove(team);
+    public void remove(Participant participant) {
+        this.remove(participant);
     }
 
     public void showShuffleParticipants() {
@@ -79,15 +85,36 @@ public class Tournament {
             System.out.println(participant.getKey() + participant.getRank(this.category));
         }
     }
-    public boolean isPlayerInTournament(Player player){
-        Iterator<Participant> iterator = this.participants.iterator();
-        Participant participant = iterator.next();
-        Team team = 
-
-        while(!participant && iterator.hasNext()){
-            participant = iterator.next();
+    public void remove(Player player, TeamList teamList){
+        if(player.isInTeam()){
+           Team team = teamList.whichTeam(player);
+           this.remove(team);
         }
-        return ;
+        else {
+            this.remove(player);
+        }
+    }
+
+
+    public void tournamentMatchmaking(Participant participant1, Participant participant2) {
+        this.matchamke(participant1, participant2);
+    }
+
+    public void matchamke(Participant participant, Participant participant2){
+        if (!(this.matchList.isPaired(participant) &&
+                this.matchList.isPaired(participant2))){
+
+            Player[] arrayPlayers = new Player[]{this.playerList.isPlayer(input[1]), this.playerList.isPlayer(input[2])};
+            Match match = new Match(arrayPlayers);
+            this.matchList.addMatch(match);
+        }
+        else{
+            error.writeln(Error.PLAYER_ALREADY_MATCHED);
+        }
+    }
+
+    public void randomMatchmake(){
+
     }
 
 

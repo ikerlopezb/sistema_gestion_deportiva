@@ -3,6 +3,7 @@ package upm.controller;
 import upm.Category;
 import upm.Error;
 import upm.Tournament;
+import upm.controller.commands.TournamentRemoveCommand;
 import upm.list.*;
 import upm.model.Admin;
 import upm.model.Player;
@@ -11,6 +12,8 @@ import upm.model.User;
 import upm.view.ErrorView;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import upm.model.Participant;
+import java.util.Iterator;
 
 public class Controller {
 
@@ -61,6 +64,7 @@ public class Controller {
         Player player = this.playerList.isPlayer(DNI);
         if(this.teamList.existTeam(teamName) && player != null){
             Team team = this.teamList.isTeam(teamName);
+            player.setInTeam(true);
             team.add(player);
         }
     }
@@ -136,12 +140,27 @@ public class Controller {
         }
         return user;
     }
-    public void tournamentRemove(User user){
-        assert user != null;
+    public void tournamentRemove(Player player){
+        assert player != null;
+        for(Tournament tournament : this.tournamentlist.getTournamentList()){
+            tournament.remove(player, this.teamList);
+        }
+    }
 
+    public Participant findParticipant(String key) {
+        Participant participant = this.playerList.isPlayer(key);
+        if (participant != null) {
+            return participant;
+        }
+        participant = this.teamList.isTeam(key);
+        return participant;
+    }
 
-
+    public void tournamentMatchmaking(Participant participant1, Participant participant2) {
+        this.tournament.matchmake(participant1, participant2);
     }
 
 
+
 }
+

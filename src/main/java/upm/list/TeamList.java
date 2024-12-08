@@ -1,5 +1,6 @@
 package upm.list;
 
+import upm.model.Participant;
 import upm.model.Player;
 import upm.model.Team;
 
@@ -47,5 +48,14 @@ public class TeamList {
             team = iterator.next();
         }
         return team;
+    }
+
+    public Participant isParticipantTeam(String key) {
+        Iterator<Team> iterator = this.teamList.iterator();
+        Team team = iterator.next();
+        while (!team.getKey().equals(key) && iterator.hasNext()) {
+            iterator.next();
+        }
+        return team.getKey().equals(key) ? team : null;
     }
 }

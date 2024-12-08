@@ -2,7 +2,6 @@ package upm.list;
 
 import upm.Tournament;
 import upm.model.Participant;
-import upm.model.Player;
 import upm.model.Team;
 
 import java.util.Iterator;
@@ -20,14 +19,14 @@ public class TournamentList {
     }
 
     public boolean isCompeting(Team team) {
-        Tournament tournament = iterateTournamentList(team);
+        Tournament tournament = findCompetingTournament(team);
         return tournament == null;
     }
 
     public Tournament getTournamentParticipant(Participant participant){
-        return iterateTournamentList(participant);
+        return findCompetingTournament(participant);
     }
-    private Tournament iterateTournamentList(Participant participant){
+    private Tournament findCompetingTournament(Participant participant){
         Iterator<Tournament> iterator = this.tournamentList.iterator();
         Tournament tournament = iterator.next();
         while(tournament.currentlyCompeting(participant) && iterator.hasNext()) {

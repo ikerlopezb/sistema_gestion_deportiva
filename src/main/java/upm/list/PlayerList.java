@@ -1,5 +1,6 @@
 package upm.list;
 
+import upm.model.Participant;
 import upm.model.Player;
 
 import java.util.ArrayList;
@@ -16,20 +17,6 @@ public class PlayerList {
         return this.playerList;
     }
 
-    public Player isPlayer(String DNI) {
-        if (!this.playerList.isEmpty()) {
-            Iterator<Player> iterator = this.playerList.iterator();
-            Player player = iterator.next();
-
-            while (iterator.hasNext() && !(player.getKey().equals(DNI))) {
-                player = iterator.next();
-            }
-
-            return (player.getKey().equals(DNI)) ? player: null;
-        } else {
-            return null;
-        }
-    }
     public Player isPlayer(String email, String password){
         Iterator<Player> iterator = this.playerList.iterator();
         Player playerInList =  iterator.next();
@@ -40,6 +27,14 @@ public class PlayerList {
         }
         return (playerInList.getEmail().equals(email) &&
                 playerInList.getPassword().equals(password)) ? playerInList : null;
+    }
+    public Player isPlayer(String key) {
+        Iterator<Player> iterator = this.playerList.iterator();
+        Player player = iterator.next();
+        while (!player.getKey().equals(key) && iterator.hasNext()) {
+            iterator.next();
+        }
+        return player.getKey().equals(key) ? player : null;
     }
 
     public void addPlayer(Player player) {
@@ -60,6 +55,14 @@ public class PlayerList {
 
     public Player getIndex(int i) {
         return this.playerList.get(i);
+    }
+    public Participant isParticipantPlayer(String key) {
+        Iterator<Player> iterator = this.playerList.iterator();
+        Player player = iterator.next();
+        while (!player.getKey().equals(key) && iterator.hasNext()) {
+            iterator.next();
+        }
+        return player.getKey().equals(key) ? player : null;
     }
 
 }
