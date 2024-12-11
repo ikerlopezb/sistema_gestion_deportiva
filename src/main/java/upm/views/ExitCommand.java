@@ -6,7 +6,7 @@ public class ExitCommand extends Command {
         super("exit");
     }
 
-    public void execute(String[] input) { //no he sabido dónde ponerle porque es de ambos
+    public void execute(String[] input) {
         assert input.length == 1;
         System.out.println("Saliendo del programa...");
     }
