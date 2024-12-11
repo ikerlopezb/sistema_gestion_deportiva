@@ -17,6 +17,7 @@ public class Admin extends User {
     }
 
 
+
     public void accept(VisitorUser visitor) {
         visitor.visit(this);
     }

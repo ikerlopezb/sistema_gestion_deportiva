@@ -18,6 +18,10 @@ public class AdminList {
         adminList.add(new Admin("andrejesus.cimmino@upm.es", "1234"));
     }
 
+    public ArrayList<Admin> getAdminList() {
+        return adminList;
+    }
+
     public Admin isAdmin(String email, String password) {
         Iterator<Admin> iterator = this.adminList.iterator();
         Admin adminInList = iterator.next();

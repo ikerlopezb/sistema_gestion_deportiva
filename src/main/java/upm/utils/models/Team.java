@@ -3,6 +3,8 @@ package upm.utils.models;
 import upm.utils.Category;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Team implements Participant {
     private ArrayList<Player> team;
@@ -15,6 +17,16 @@ public class Team implements Participant {
 
     public String getKey() {
         return this.teamName;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public List<String> getPlayerNames() {
+        return this.team.stream()
+                .map(Player::getForename)
+                .collect(Collectors.toList());
     }
 
     public void add(Player player) {

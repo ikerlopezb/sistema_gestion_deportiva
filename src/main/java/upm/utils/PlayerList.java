@@ -13,6 +13,9 @@ public class PlayerList {
         this.playerList = playerList;
     }
 
+    public ArrayList<Player> getPlayerList() {
+        return playerList;
+    }
 
     public Player isPlayer(String email, String password) {
         Iterator<Player> iterator = this.playerList.iterator();

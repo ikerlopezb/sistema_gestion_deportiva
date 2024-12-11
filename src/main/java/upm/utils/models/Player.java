@@ -31,6 +31,14 @@ public class Player extends User implements Participant {
         return this.key;
     }
 
+    public String getForename() {
+        return forename;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
     public boolean isInTeam() {
         return inTeam;
     }

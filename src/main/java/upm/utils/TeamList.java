@@ -14,6 +14,10 @@ public class TeamList {
         this.teamList = teamList;
     }
 
+    public List<Team> getTeamList() {
+        return teamList;
+    }
+
     public boolean existTeam(String teamName) {
         Iterator<Team> iterator = teamList.iterator();
         Team team = iterator.next();

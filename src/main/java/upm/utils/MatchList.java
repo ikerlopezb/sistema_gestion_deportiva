@@ -12,6 +12,10 @@ public class MatchList {
         this.matchList = new ArrayList<Match>();
     }
 
+    public ArrayList<Match> getMatchList() {
+        return matchList;
+    }
+
     public boolean isPaired(Participant participant) {
         if (!this.matchList.isEmpty()) {
             int i = 0;

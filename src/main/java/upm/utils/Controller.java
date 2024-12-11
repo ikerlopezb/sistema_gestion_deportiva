@@ -7,6 +7,9 @@ import upm.utils.models.Team;
 import upm.utils.models.Participant;
 import upm.views.ErrorView;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -180,5 +183,48 @@ public class Controller {
             player.printJSON();
         }
     }
+    public void writeFile(FileWriter writer) throws IOException {
+        writePlayerList(writer);
+        writeTeamList(writer);
+        writeTournamentList(writer);
+        writeAdminList(writer);
+    }
+
+    private void writePlayerList(FileWriter writer) throws IOException {
+        writer.write("Player:\n");
+        for (Player player : this.playerList.getPlayerList()) {
+            writer.write(String.format("%s;%s;%s;%s;%s\n", player.getForename(),player.getSurname(),player.getKey(),
+                    player.getEmail(), player.getPassword()));
+        }
+    }
+    private void writeTeamList(FileWriter writer) throws IOException {
+        writer.write("\nTeam:\n");
+        for (Team team : this.teamList.getTeamList()) {
+            writer.write(String.format("%s;", team.getTeamName()));
+            writer.write(String.join(", ", team.getPlayerNames()));
+            writer.write("\n");
+        }
+    }
+    private void writeTournamentList(FileWriter writer) throws IOException {
+        writer.write("\nTournament:\n");
+        for (Tournament tournament : this.tournamentlist.getTournamentList()) {
+            writer.write(String.format("%s;%s;%s;%s;", tournament.getTournamentName(), tournament.getStartDate(),
+                    tournament.getEndDate(),tournament.getCategory()));
+            writer.write(String.join(", ", tournament.getParticipantNames()));
+            writer.write("\n");
+        }
+    }
+    private void writeAdminList(FileWriter writer) throws IOException {
+        writer.write("\nAdmin:\n");
+        for (Admin admin : this.adminList.getAdminList()) {
+            writer.write(String.format("%s;%s\n", admin.getEmail(), admin.getPassword()));
+        }
+    }
+
+    public void readFile(FileReader reader) {
+
+    }
+
+
 }
 

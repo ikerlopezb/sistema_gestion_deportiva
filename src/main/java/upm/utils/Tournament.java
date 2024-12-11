@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import upm.utils.models.Player;
 import upm.utils.models.Team;
@@ -32,9 +34,22 @@ public class Tournament {
         this.matchList = new MatchList();
     }
 
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
 
     public ArrayList<Participant> getParticipants() {
         return participants;
+    }
+
+    public List<String> getParticipantNames() {
+        return this.participants.stream()
+                .map(Participant::getKey)
+                .collect(Collectors.toList());
     }
 
     public String getTournamentName() {
@@ -121,7 +136,5 @@ public class Tournament {
             this.matchList.addMatch(match);
         }
     }
-
-
 }
 
