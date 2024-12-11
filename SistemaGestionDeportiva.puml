@@ -1,0 +1,324 @@
+@startuml
+
+' Class definitions
+class CLI {
+    - Controller controller
+    - List<Command> enabledCommands
+    - ErrorView error
+    - List<Command> commandList
+    + execute()
+    + visit(player: Player)
+    + visit(admin: Admin)
+    + publicCommands()
+    + tournamentList(player: Player)
+    + tournamentList(admin: Admin)
+}
+
+class Command {
+    - String preffix
+    + execute(input: String[])
+    + isYours(input: String): boolean
+}
+
+class Controller {
+    - PlayerList playerList
+    - MatchList matchList
+    - TeamList teamList
+    - AdminList adminList
+    - TournamentList tournamentList
+    + createPlayer(...args)
+    + deletePlayer(playerName: String)
+    + teamCreate(teamName: String)
+    + teamDelete(teamName: String)
+    + tournamentCreate(name: String, start: String, end: String, category: String)
+    + tournamentDelete(name: String)
+    + tournamentAdd(name: String, participant: String)
+    + tournamentRemove(player: Player)
+    + tournamentMatchmakingAutomatic(name: String)
+    + tournamentMatchmakingManual(name: String, player1: Participant, player2: Participant)
+    + statisticsShow(player: String, stat: String)
+    + showTournamentList()
+    + showShuffleTournamentList()
+}
+
+class Player {
+    + String name
+    + String email
+    + String password
+    + Boolean isInTeam()
+}
+
+class Admin {
+    + String name
+    + String role
+}
+
+class Tournament {
+    + String tournamentName
+    + String startDate
+    + String endDate
+    + Category category
+    + List<Participant> participants
+    + MatchList matchList
+    + ErrorView error
+    + tournamentAdd(name: String, participant: String)
+    + tournamentRemove(player: Player)
+    + tournamentMatchmakingAutomatic(name: String)
+    + tournamentMatchmakingManual(name: String, player1: Participant, player2: Participant)
+}
+
+class ErrorView {
+    + writeln(error: Error)
+}
+
+
+class PlayerList {
+  - ArrayList<Player> playerList
+  + PlayerList(ArrayList<Player> playerList)
+  + Player isPlayer(String email, String password)
+  + Player isPlayer(String key)
+  + void addPlayer(Player player)
+  + void removePlayer(Player player)
+  + Participant isParticipantPlayer(String key)
+}
+
+class TeamList {
+  - List<Team> teamList
+  + TeamList(List<Team> teamList)
+  + boolean existTeam(String teamName)
+  + void add(Team team)
+  + Team isTeam(String teamName)
+  + Team whichTeam(Player player)
+  + Participant isParticipantTeam(String key)
+}
+
+class Tournament {
+  - String tournamentName
+  - LocalDate startDate
+  - LocalDate endDate
+  - Category category
+  - ArrayList<Participant> participants
+  - MatchList matchList
+  - ErrorView error
+  + Tournament(String tournamentName, LocalDate startDate, LocalDate endDate, Category rankingCategory)
+  + ArrayList<Participant> getParticipants()
+  + String getTournamentName()
+  + boolean currentlyCompeting(Participant participant)
+  + void remove(Participant participant)
+  + void showShuffleParticipants()
+  + LocalDate getEndDate()
+  + void shuffle()
+  + void showRankingParticipants()
+  + void remove(Player player, TeamList teamList)
+  + void matchmake(Participant participant, Participant participant2)
+  + boolean areBothCompeting(Participant participant1, Participant participant2)
+  + void randomMatchmake()
+}
+
+class TournamentList {
+  - List<Tournament> tournamentList
+  + TournamentList(List<Tournament> tournamentList)
+  + List<Tournament> getTournamentList()
+  + boolean isCompeting(Team team)
+  + Tournament getTournamentParticipant(Participant participant)
+  + Tournament isTournament(String tournamentName)
+  + void add(Tournament tournament)
+  + void remove(Tournament tournament)
+}
+
+class VisitorUser {
+  + void visit(Player player)
+  + void visit(Admin admin)
+  + void tournamentList(Player player)
+  + void tournamentList(Admin admin)
+}
+
+class CLI {
+  - Controller controller
+  - List<Command> enabledCommands
+  - ErrorView error
+  - List<Command> commandList
+  + CLI()
+  + void execute()
+  + void visit(Player player)
+  + void visit(Admin admin)
+  + void tournamentList(Player player)
+  + void tournamentList(Admin admin)
+  + publicCommands()
+  + static void main(String[] args)
+}
+
+class Command {
+  - String preffix
+  + Command(String preffix)
+  + abstract void execute(String[] input)
+  + boolean isYours(String input)
+}
+
+class CreateCommand {
+  - Controller controller
+  + CreateCommand(Controller controller)
+  + void execute(String[] input)
+}
+
+class ClearMatchmakeCommand {
+  - Controller controller
+  + ClearMatchmakeCommand()
+  + void execute(String[] input)
+}
+
+class ErrorView {
+  - static final String[] MESSAGES
+  + void writeln(Error error)
+}
+
+class ExitCommand {
+  + ExitCommand()
+  + void execute(String[] input)
+}
+
+class LoginCommand {
+  - Controller controller
+  - boolean logged
+  - User user
+  + LoginCommand(Controller controller)
+  + void execute(String[] input)
+  + boolean getLogged()
+  + User isLogged()
+  + void logout()
+}
+
+class LogoutCommand {
+  - LoginCommand loginCommand
+  + LogoutCommand()
+  + void execute(String[] input)
+}
+
+class PlayerDeleteCommand {
+  - PlayerList playerList
+  - Controller controller
+  - ErrorView error
+  + PlayerDeleteCommand(Controller controller)
+  + void execute(String[] input)
+}
+
+class StatisticsShowCommand {
+  - Controller controller
+  + StatisticsShowCommand(Controller controller)
+  + void execute(String[] input)
+}
+
+class TeamAddCommand {
+  - Controller controller
+  + TeamAddCommand(Controller controller)
+  + void execute(String[] input)
+}
+
+class TeamCreateCommand {
+  - Controller controller
+  + TeamCreateCommand(Controller controller)
+  + void execute(String[] input)
+}
+
+class TeamDeleteCommand {
+  - Controller controller
+  + TeamDeleteCommand(Controller controller)
+  + void execute(String[] input)
+}
+
+class TeamRemoveCommand {
+  - Controller controller
+  + TeamRemoveCommand(Controller controller)
+  + void execute(String[] input)
+}
+
+class TournamentAddCommand {
+  - Controller controller
+  + TournamentAddCommand(Controller controller)
+  + void execute(String[] input)
+}
+
+class TournamentCreateCommand {
+  - Controller controller
+  + TournamentCreateCommand(Controller controller)
+  + void execute(String[] input)
+}
+
+class TournamentDeleteCommand {
+  - Controller controller
+  + TournamentDeleteCommand(Controller controller)
+  + void execute(String[] input)
+}
+
+class TournamentListCommand {
+  - Controller controller
+  - LoginCommand loginCommand
+  - CLI visitor
+  - User user
+  + TournamentListCommand(Controller controller)
+  + void execute(String[] input)
+}
+
+class TournamentMatchmakingCommand {
+  - Controller controller
+  + TournamentMatchmakingCommand(Controller controller)
+  + void execute(String[] input)
+}
+
+class TournamentRemoveCommand {
+  - Controller controller
+  - LoginCommand loginCommand
+  + TournamentRemoveCommand(Controller controller)
+  + void execute(String[] input)
+}
+
+' Associations
+CLI --> Controller
+CLI --> Command
+CLI --> ErrorView
+Command <|-- CreateCommand
+Command <|-- TournamentCreateCommand
+Command <|-- TournamentRemoveCommand
+Command <|-- TournamentListCommand
+Command <|-- TournamentAddCommand
+Command <|-- TournamentDeleteCommand
+Command <|-- TournamentMatchmakingCommand
+Command <|-- TeamAddCommand
+Command <|-- TeamCreateCommand
+Command <|-- TeamDeleteCommand
+Command <|-- TeamRemoveCommand
+Command <|-- PlayerDeleteCommand
+Command <|-- LoginCommand
+Command <|-- LogoutCommand
+Command <|-- StatisticsShowCommand
+Command <|-- ExitCommand
+Command <|-- ClearMatchmakeCommand
+PlayerList --> Player
+PlayerList --> CLI
+Controller --> PlayerList
+Controller --> MatchList
+Controller --> TeamList
+Controller --> AdminList
+Controller --> TournamentList
+TournamentList --> Tournament
+TournamentList --> CLI
+Tournament --> Participant
+Tournament --> MatchList
+PlayerList --> Player
+PlayerList --> Participant
+TeamList --> Team
+Tournament --> Participant
+Tournament --> MatchList
+TournamentList --> Tournament
+VisitorUser --> Player
+VisitorUser --> Admin
+CLI --> Command
+CLI --> Controller
+Command --> ErrorView
+Command --> TournamentAddCommand
+Command --> TournamentCreateCommand
+Command --> TournamentDeleteCommand
+Command --> TournamentMatchmakingCommand
+Command --> TournamentRemoveCommand
+
+@enduml

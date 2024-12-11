@@ -68,6 +68,7 @@ public class CLI implements VisitorUser {
         enabledCommands.add(new TournamentCreateCommand(controller));
         enabledCommands.add(new TournamentDeleteCommand(controller));
         enabledCommands.add(new TournamentMatchmakingCommand(controller));
+        enabledCommands.add(new ClearMatchmakeCommand());
         publicCommands();
     }
 
