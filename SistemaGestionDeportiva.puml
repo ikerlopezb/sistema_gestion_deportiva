@@ -14,9 +14,9 @@ class CLI {
     + tournamentList(admin: Admin)
 }
 
-class Command {
+abstract class Command {
     - String preffix
-    + execute(input: String[])
+    + execute(input: String[]): void
     + isYours(input: String): boolean
 }
 
@@ -42,15 +42,34 @@ class Controller {
 }
 
 class Player {
-    + String name
-    + String email
-    + String password
-    + Boolean isInTeam()
+    - final String forename
+    - final String surname
+    - final String key
+    - ArrayList<Statistic> statistics
+    - boolean inTeam
+    + Player(String forename, String surname, String key, String email, String password)
+    + ArrayList<Statistic> getStatistics()
+    + String getKey()
+    + String getForename()
+    + String getSurname()
+    + boolean isInTeam()
+    + void setInTeam(boolean inTeam)
+    + void accept(VisitorUser visitor)
+    + void tournamentList(VisitorUser visitor)
+    + double getRank(Category category)
+    + Player asPlayer()
+    + Participant isParticipant(String key)
+    + void printTable()
+    + void printJSON()
 }
 
 class Admin {
-    + String name
-    + String role
+    - ArrayList<Player> registeredPlayers
+    - ArrayList<Team> registeredTeams
+    + Admin(String email, String password)
+    + void accept(VisitorUser visitor)
+    + void tournamentList(VisitorUser visitor)
+
 }
 
 class Tournament {
@@ -71,6 +90,13 @@ class ErrorView {
     + writeln(error: Error)
 }
 
+class AdminList {
+    -ArrayList<Admin> adminList
+    +AdminList
+    +ArrayList<Admin> getAdminList
+    +Admin isAdmin(String email, String password)
+
+}
 
 class PlayerList {
   - ArrayList<Player> playerList
@@ -81,6 +107,21 @@ class PlayerList {
   + void removePlayer(Player player)
   + Participant isParticipantPlayer(String key)
 }
+
+class Team {
+    - ArrayList<Player> team
+    - String teamName
+    + Team(String teamName)
+    + String getKey()
+    + String getTeamName()
+    + List<String> getPlayerNames()
+    + void add(Player player)
+    + void remove(Player player)
+    + double getRank(Category category)
+    + boolean isPlayerInTeam(Player player)
+    + Participant isParticipant(String key)
+}
+
 
 class TeamList {
   - List<Team> teamList
@@ -115,6 +156,15 @@ class Tournament {
   + void randomMatchmake()
 }
 
+class MatchList {
+    - ArrayList<Match> matchList
+    + MatchList()
+    + ArrayList<Match> getMatchList()
+    + boolean isPaired(Participant participant)
+    + void clearmatchList()
+    + void addMatch(Match match)
+}
+
 class TournamentList {
   - List<Tournament> tournamentList
   + TournamentList(List<Tournament> tournamentList)
@@ -146,13 +196,6 @@ class CLI {
   + void tournamentList(Admin admin)
   + publicCommands()
   + static void main(String[] args)
-}
-
-class Command {
-  - String preffix
-  + Command(String preffix)
-  + abstract void execute(String[] input)
-  + boolean isYours(String input)
 }
 
 class CreateCommand {
@@ -206,6 +249,14 @@ class StatisticsShowCommand {
   - Controller controller
   + StatisticsShowCommand(Controller controller)
   + void execute(String[] input)
+}
+
+class Statistic {
+    - Category category
+    - double value
+    + Statistic(Category category, double value)
+    + Category getCategory()
+    + double getValue()
 }
 
 class TeamAddCommand {
@@ -271,6 +322,31 @@ class TournamentRemoveCommand {
   + TournamentRemoveCommand(Controller controller)
   + void execute(String[] input)
 }
+class Error {
+    + boolean isNull()
+}
+
+interface Participant {
+    + String getKey()
+    + double getRank(Category category)
+    + Participant isParticipant(String key)
+}
+
+enum Category {
+    SCORED_POINTS
+    MATCHES_WON
+    ASSISTS_POINTS
+    WON_TOURNAMENTS
+    EARNED_PRIZE
+}
+
+enum Error {
+    PLAYER_NOT_FOUND
+    PLAYER_ALREADY_EXISTS
+    PLAYER_ALREADY_MATCHED
+    COMMAND_NOT_FOUND
+    NULL
+}
 
 ' Associations
 CLI --> Controller
@@ -293,32 +369,24 @@ Command <|-- LogoutCommand
 Command <|-- StatisticsShowCommand
 Command <|-- ExitCommand
 Command <|-- ClearMatchmakeCommand
-PlayerList --> Player
 PlayerList --> CLI
 Controller --> PlayerList
 Controller --> MatchList
 Controller --> TeamList
 Controller --> AdminList
 Controller --> TournamentList
-TournamentList --> Tournament
 TournamentList --> CLI
-Tournament --> Participant
-Tournament --> MatchList
 PlayerList --> Player
 PlayerList --> Participant
+Statistic --> Category
 TeamList --> Team
 Tournament --> Participant
 Tournament --> MatchList
 TournamentList --> Tournament
 VisitorUser --> Player
 VisitorUser --> Admin
-CLI --> Command
-CLI --> Controller
-Command --> ErrorView
-Command --> TournamentAddCommand
-Command --> TournamentCreateCommand
-Command --> TournamentDeleteCommand
-Command --> TournamentMatchmakingCommand
-Command --> TournamentRemoveCommand
+Participant --> Category
+Error ..> Error : <<enum>>
+ErrorView --> Error
 
 @enduml
