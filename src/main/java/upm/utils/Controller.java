@@ -7,6 +7,7 @@ import upm.utils.models.Team;
 import upm.utils.models.Participant;
 import upm.views.ErrorView;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -197,7 +198,7 @@ public class Controller {
                     player.getEmail(), player.getPassword()));
         }
     }
-    private void writeTeamList(FileWriter writer) throws IOException {
+    private void writeTeamList (FileWriter writer) throws IOException {
         writer.write("\nTeam:\n");
         for (Team team : this.teamList.getTeamList()) {
             writer.write(String.format("%s;", team.getTeamName()));
@@ -221,9 +222,46 @@ public class Controller {
         }
     }
 
-    public void readFile(FileReader reader) {
+    public void readFile(String filePath) {
+        String linea;
+        try (BufferedReader in = new BufferedReader(new FileReader(filePath))){
+            while (((linea = in.readLine()) != null)){
+                if (linea.trim().endsWith(":")) {
+                    System.out.println(linea);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
+
+    private void readPlayerList(FileReader writer, String line) throws IOException {
+        BufferedReader in = null;
+        in = new BufferedReader(new FileReader());
+        String linea;
+        while ((linea = in.readLine()) != null) {
+            System.out.println(linea);
+        }
+
+    }
+    private void readTeamList(FileReader reader, String line) throws IOException {
+        if (line == "team") {
+
+
+        }
+
+    }
+    private void readTournamentList(FileReader reader, String line) throws IOException {
+
+    }
+    private void readAdminList(FileReader line) throws IOException {
+
+    }
+
+
+
+
 
 }
 

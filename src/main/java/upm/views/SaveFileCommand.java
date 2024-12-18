@@ -10,7 +10,7 @@ public class SaveFileCommand extends Command {
     private Controller controller;
 
     public SaveFileCommand(Controller controller) {
-        super("writeFile");
+        super("write-file");
         this.controller = controller;
     }
 
