@@ -33,4 +33,8 @@ public class AdminList {
         return (adminInList.getEmail().equals(email) &&
                 adminInList.getPassword().equals(password)) ? adminInList : null;
     }
+
+    public void add(Admin admin) {
+        this.adminList.add(admin);
+    }
 }

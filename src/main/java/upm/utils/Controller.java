@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class Controller {
 
@@ -22,6 +23,8 @@ public class Controller {
     private TeamList teamList;
     private TournamentList tournamentlist;
     private ErrorView error;
+    //private List<Reader> reader;
+    private Reader reader;
 
     public Controller(PlayerList playerList, MatchList matchList, TeamList teamList, AdminList adminList, TournamentList tournamentList) {
         this.playerList = playerList;
@@ -225,9 +228,10 @@ public class Controller {
     public void readFile(String filePath) {
         String linea;
         try (BufferedReader in = new BufferedReader(new FileReader(filePath))){
+            ReadPlayerList readPlayerList = new ReadPlayerList(this.playerList, in);
             while (((linea = in.readLine()) != null)){
                 if (linea.trim().endsWith(":")) {
-                    System.out.println(linea);
+                    reader.read(linea);
                 }
             }
         } catch (IOException e) {
